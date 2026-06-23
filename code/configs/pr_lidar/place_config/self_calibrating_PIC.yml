@@ -1,0 +1,12 @@
+# ===============================
+# Placement
+# ===============================
+
+placement:
+  rowNum: 320
+  siteNum: 5960
+  coordinateOrigin: -1980
+  SubrowOrigin: 20
+  siteHeight: 12
+  siteWidth: 1
+  siteSpacing: 1

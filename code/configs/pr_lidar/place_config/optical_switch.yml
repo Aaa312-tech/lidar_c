@@ -1,0 +1,12 @@
+# ===============================
+# Placement
+# ===============================
+
+placement:
+  rowNum: 100
+  siteNum: 900
+  coordinateOrigin: -900
+  SubrowOrigin: -900
+  siteHeight: 12
+  siteWidth: 1
+  siteSpacing: 1

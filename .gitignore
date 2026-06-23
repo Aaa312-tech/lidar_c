@@ -1,0 +1,40 @@
+# Build outputs
+build/
+build_*/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+compile_commands.json
+
+# Python environments and caches
+.venv*/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Runtime scratch outputs
+checks/
+out/
+tmp/
+*.log
+
+# Native binaries generated after merge/build
+*.exe
+*.dll
+*.lib
+*.pdb
+*.obj
+*.o
+
+# External validation files copied locally by users
+standard_gds/*.gds
+!standard_gds/README.md
+
+# Editor/OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
