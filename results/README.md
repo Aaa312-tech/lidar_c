@@ -28,6 +28,7 @@ For paper-style review, start with:
 ```text
 research_evidence/h015_effect_evidence_matrix.csv
 research_evidence/research_claims_ledger.csv
+research_evidence/artifact_scorecard.csv
 research_evidence/paper_assets/
 ```
 

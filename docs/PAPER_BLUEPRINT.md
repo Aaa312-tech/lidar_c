@@ -86,6 +86,7 @@ Primary evidence tables:
 results/reference_run/reference_run.csv
 results/research_evidence/h015_effect_evidence_matrix.csv
 results/research_evidence/research_claims_ledger.csv
+results/research_evidence/artifact_scorecard.csv
 results/research_evidence/paper_assets/
 ```
 

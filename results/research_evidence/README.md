@@ -23,6 +23,8 @@ read after moving the package:
 | `h015_effect_evidence_matrix.json` | JSON form of the current effect evidence matrix. |
 | `research_claims_ledger.csv` | Research claim ledger mapping quality/runtime/GDS claims to concrete evidence files. |
 | `research_claims_ledger.json` | JSON form of the research claim ledger. |
+| `artifact_scorecard.csv` | Requirement-by-requirement artifact scorecard with evidence and concrete GDS mappings. |
+| `artifact_scorecard.json` | JSON form of the artifact scorecard. |
 | `paper_assets/` | Generated paper-ready tables, Markdown table copies, figure-data CSV files, SVG figures, README, and asset manifest. |
 | `h015_public_validation_run_summary.csv` | Sanitized H015 regression summary produced by `run_lidar_benchmark_regression.py`. |
 | `h015_public_validation_run_summary.json` | JSON form of the sanitized H015 regression summary. |

@@ -259,6 +259,8 @@ Detailed documents:
 docs/METHODOLOGY.md
 docs/SCIENTIFIC_RESULT.md
 docs/LAE_LIDAR_AGENT_PROTOCOL.md
+docs/GPT55_AGENT_SPEC.md
+docs/ARTIFACT_EVALUATION_REPORT.md
 docs/PAPER_BLUEPRINT.md
 docs/ALGORITHM_CHANGES_AND_INNOVATIONS.md
 docs/EXPERIENCE_AND_TROUBLESHOOTING.md
@@ -273,6 +275,12 @@ Paper-ready generated tables, figure data, and SVG figures:
 
 ```text
 results/research_evidence/paper_assets/
+```
+
+Artifact scorecard:
+
+```text
+results/research_evidence/artifact_scorecard.csv
 ```
 
 ## Current Risks

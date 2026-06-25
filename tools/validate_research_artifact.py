@@ -231,6 +231,41 @@ def validate_claims(root: Path, errors: list[str], report: dict[str, object]) ->
     report["claims_checked"] = len(rows)
 
 
+def validate_scorecard(root: Path, errors: list[str], report: dict[str, object]) -> None:
+    path = root / "results" / "research_evidence" / "artifact_scorecard.csv"
+    json_path = root / "results" / "research_evidence" / "artifact_scorecard.json"
+    require(path.exists(), f"missing_artifact_scorecard: {path}", errors)
+    require(json_path.exists(), f"missing_artifact_scorecard_json: {json_path}", errors)
+    if not path.exists():
+        return
+    rows = read_csv(path)
+    expected_ids = {
+        "R-QUALITY-001",
+        "R-SPEED-001",
+        "R-GDS-001",
+        "R-STANDARD-001",
+        "R-AGENT-001",
+        "R-METHOD-001",
+        "R-PAPER-001",
+        "R-VALIDATION-001",
+        "R-LIMITS-001",
+    }
+    ids = {row.get("requirement_id", "") for row in rows}
+    require(ids == expected_ids, f"scorecard_requirement_ids_mismatch: {sorted(ids)}", errors)
+    for row in rows:
+        requirement_id = row.get("requirement_id", "<missing>")
+        require(row.get("status") == "satisfied", f"scorecard_not_satisfied: {requirement_id}", errors)
+        for column in ["primary_evidence", "concrete_gds"]:
+            for value in evidence_paths(row.get(column, "")):
+                resolved_paths = resolve_artifact_path(root, value)
+                if value.startswith("<"):
+                    continue
+                require(resolved_paths, f"scorecard_glob_empty: {requirement_id}: {column}: {value}", errors)
+                for resolved in resolved_paths:
+                    require(resolved.exists(), f"scorecard_file_missing: {requirement_id}: {column}: {value}", errors)
+    report["scorecard_rows_checked"] = len(rows)
+
+
 def validate_paper_assets(root: Path, errors: list[str], report: dict[str, object]) -> None:
     asset_dir = root / "results" / "research_evidence" / "paper_assets"
     manifest_path = asset_dir / "asset_manifest.json"
@@ -314,6 +349,7 @@ def main() -> int:
     validate_h015_summary(root, matrix_rows, errors, report)
     validate_standard_gds_rows(root, errors, report)
     validate_claims(root, errors, report)
+    validate_scorecard(root, errors, report)
     validate_paper_assets(root, errors, report)
 
     report["status"] = "fail" if errors else "pass"
@@ -343,6 +379,7 @@ def main() -> int:
         "h015_total_full_flow_s",
         "standard_gds_raw_cpp_rows",
         "claims_checked",
+        "scorecard_rows_checked",
         "paper_assets_checked",
     ]:
         print(f"{key}={report.get(key)}")

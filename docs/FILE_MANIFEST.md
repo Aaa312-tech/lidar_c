@@ -94,6 +94,7 @@ These are input benchmarks, not standard routed GDS files.
 | `results/research_evidence/h015_public_validation_evidence_ledger.csv` | Current per-case GDS, DRC, timing, hash, and XOR evidence ledger. |
 | `results/research_evidence/h015_effect_evidence_matrix.csv` | Current per-case quality, runtime, GDS hash, H013 comparison, standard-GDS comparison, and A/B timing matrix. |
 | `results/research_evidence/research_claims_ledger.csv` | Research claim ledger mapping publishable claims to concrete evidence files and GDS artifacts. |
+| `results/research_evidence/artifact_scorecard.csv` | Requirement-by-requirement scorecard for quality, speed, GDS evidence, agent protocol, methodology, paper assets, validation, and limitations. |
 | `results/research_evidence/h015_vs_h013_reference_gds_pair_summary.csv` | Previous H013 reference GDS vs current H015 GDS comparison. |
 | `results/research_evidence/h015_standard_gds_pair_summary.csv` | External standard GDS vs current H015 GDS comparison. |
 | `results/research_evidence/h015_ab_timing_n3_summary_by_case.csv` | Three-repetition H015 timing/quality A/B summary. |
@@ -120,6 +121,8 @@ These are input benchmarks, not standard routed GDS files.
 | `docs/METHODOLOGY.md` | Methodology for building/converting a high-quality router. |
 | `docs/SCIENTIFIC_RESULT.md` | Paper-style research-result statement with claim-to-evidence mapping. |
 | `docs/LAE_LIDAR_AGENT_PROTOCOL.md` | Project-specific agent protocol for hypothesis-driven router improvement. |
+| `docs/GPT55_AGENT_SPEC.md` | GPT-5.5-class agent specification for reproducing the LAE-LiDAR optimization loop. |
+| `docs/ARTIFACT_EVALUATION_REPORT.md` | Reviewer-facing artifact evaluation report and limitation summary. |
 | `docs/PAPER_BLUEPRINT.md` | Paper-ready outline, tables, figures, threats to validity, and artifact checklist. |
 | `docs/ALGORITHM_CHANGES_AND_INNOVATIONS.md` | Algorithmic changes, engineering innovations, and what was not hardcoded. |
 | `docs/EXPERIENCE_AND_TROUBLESHOOTING.md` | Lessons learned and debugging playbook. |
