@@ -357,6 +357,54 @@ route result 只在边界处序列化，不在每步搜索中跨 Python
 同一 route result 被复用到 summary、writeback、DRC、GDS render
 ```
 
+已验证的非语义 A* 优化栈：
+
+```text
+H005 A* allocation reserve:
+  根据局部 routing bound 预留 nodes、nodeIndex 和 neighbor vector 容量。
+
+H007 structured A* node keys:
+  用 GridNodeKey(x, y, orientation) 代替每次 lookup 构造字符串 key。
+
+H008 unordered HeapDict entry lookup:
+  HeapDict 的 membership table 改为 unordered_map，但保留 binary heap 的
+  costF 比较和 pop 顺序。
+
+H010 cached A* step costs:
+  在 LidarAstarInitState 中缓存 straight0、straight45、bend45、bend90
+  固定成本，并在 neighbor loop 复用 step-type predicate。
+```
+
+这些优化的共同约束：
+
+```text
+不改变 A* cost formula
+不改变 neighbor order
+不改变 crossing/DRC legality
+不改变 heap priority comparison
+不改变 post-process 和 GDS render
+不按 case name 或标准 GDS 坐标分支
+```
+
+验证结果：
+
+```text
+H005+H007+H008+H010 vs initial C++ seed:
+  9 / 9 benchmark GDS byte-identical
+  all layer-XOR area = 0.0
+
+H005+H007+H008 direct paired timing vs initial seed:
+  selected 3 cases x 3 repetitions
+  route-core delta = -9.057515% average
+  all repeated GDS exact
+
+H010 incremental paired timing vs H008:
+  selected 2 cases x 3 repetitions
+  route-core delta = -9.949529% average
+  all repeated GDS exact
+  confidence intervals are wide, so report as conservative hot-loop cleanup
+```
+
 当前端到端瓶颈仍包括：
 
 ```text

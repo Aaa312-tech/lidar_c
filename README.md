@@ -15,6 +15,11 @@ grid/bitmap construction, port access, crossing-aware A* routing, rip-up and
 reroute, route post-processing, PIC-DB writeback, DB-level DRC, and
 gdsfactory/kfactory GDS rendering.
 
+The current source also includes the accepted non-semantic A* speed stack:
+allocation reservation, structured grid-node keys, unordered heap-entry lookup,
+and cached fixed step costs. These patches were accepted only after exact-GDS
+regression checks; they do not use standard GDS files as generation inputs.
+
 Archived reference results are included under:
 
 ```text

@@ -208,11 +208,31 @@ double shortSbendLength(const LidarPort& startPort, const LidarPort& endPort)
   return std::round(length * 1000.0) / 1000.0;
 }
 
-std::string posKey(const std::array<int, 3>& pos)
+struct GridNodeKey
 {
-  return std::to_string(pos[0]) + "," + std::to_string(pos[1]) + ","
-         + std::to_string(pos[2]);
-}
+  std::array<int, 3> pos = {0, 0, 0};
+
+  bool operator==(const GridNodeKey& other) const
+  {
+    return pos == other.pos;
+  }
+};
+
+struct GridNodeKeyHash
+{
+  std::size_t operator()(const GridNodeKey& key) const noexcept
+  {
+    std::uint64_t hash = 1469598103934665603ULL;
+    for (const int value : key.pos) {
+      std::uint64_t bits = static_cast<std::uint32_t>(value);
+      hash ^= bits;
+      hash *= 1099511628211ULL;
+      hash ^= bits >> 16;
+      hash *= 1099511628211ULL;
+    }
+    return static_cast<std::size_t>(hash);
+  }
+};
 
 std::uint64_t rotl64(std::uint64_t value, int shift)
 {
@@ -492,7 +512,14 @@ class HeapDict
     std::size_t pos = 0;
   };
 
-  explicit HeapDict(std::vector<GridSearchNode>& nodes) : _nodes(nodes) {}
+  explicit HeapDict(std::vector<GridSearchNode>& nodes,
+                    std::size_t expectedEntries = 0)
+      : _nodes(nodes)
+  {
+    if (expectedEntries > 0) {
+      _entries.reserve(expectedEntries);
+    }
+  }
 
   bool empty() const { return _heap.empty(); }
 
@@ -590,7 +617,7 @@ class HeapDict
 
   std::vector<GridSearchNode>& _nodes;
   std::vector<Entry*> _heap;
-  std::map<std::size_t, Entry> _entries;
+  std::unordered_map<std::size_t, Entry> _entries;
 };
 
 int parseEnvInt(const char* value, int fallback)
@@ -717,8 +744,10 @@ LidarAstarInitState buildAstarInitState(const LidarRuntimeView& db,
                           std::min(drc.bitmapHeight() - 1,
                                    static_cast<int>((yMean + boundY) / config.gridResolution))}}};
 
-  state.stepG["straight_0"] = config.gridResolution * config.lossPropagation;
-  state.stepG["straight_45"] = std::sqrt(2.0) * config.gridResolution * config.lossPropagation;
+  state.straight0Cost = config.gridResolution * config.lossPropagation;
+  state.straight45Cost = std::sqrt(2.0) * config.gridResolution * config.lossPropagation;
+  state.stepG["straight_0"] = state.straight0Cost;
+  state.stepG["straight_45"] = state.straight45Cost;
   const double smoothRadius = config.bendRadius - 1e-3;
   const double bend45Length = roundedCornerLength(
       0.0,
@@ -729,8 +758,9 @@ LidarAstarInitState buildAstarInitState(const LidarRuntimeView& db,
       state.bend45Part2 * config.gridResolution,
       smoothRadius,
       config.bendPointsDistance);
-  state.stepG["bend_45_1"] = bend45Length * config.lossPropagation + config.lossBending / 2.0;
-  state.stepG["bend_45_2"] = state.stepG["bend_45_1"];
+  state.bend45Cost = bend45Length * config.lossPropagation + config.lossBending / 2.0;
+  state.stepG["bend_45_1"] = state.bend45Cost;
+  state.stepG["bend_45_2"] = state.bend45Cost;
   const double bend90Length = roundedCornerLength(
       0.0,
       0.0,
@@ -740,7 +770,8 @@ LidarAstarInitState buildAstarInitState(const LidarRuntimeView& db,
       state.gridRadius * config.gridResolution,
       smoothRadius,
       config.bendPointsDistance);
-  state.stepG["bend_90"] = bend90Length * config.lossPropagation + config.lossBending;
+  state.bend90Cost = bend90Length * config.lossPropagation + config.lossBending;
+  state.stepG["bend_90"] = state.bend90Cost;
 
   const int gr = state.gridRadius;
   const int b1 = state.bend45Part1;
@@ -3546,13 +3577,21 @@ LidarAstarRouteResult routeSingleNetGrid(LidarRuntimeView& db,
   }
 
   std::vector<GridSearchNode> nodes;
-  std::unordered_map<std::string, std::size_t> nodeIndex;
+  std::unordered_map<GridNodeKey, std::size_t, GridNodeKeyHash> nodeIndex;
+  const int routeWidth = std::max(0, state.routingBound[1][0] - state.routingBound[0][0]);
+  const int routeHeight = std::max(0, state.routingBound[1][1] - state.routingBound[0][1]);
+  const auto boundedSearchCells = static_cast<std::size_t>(
+      std::min<long long>(static_cast<long long>(routeWidth) * routeHeight * 8LL,
+                          16384LL));
+  const std::size_t initialNodeReserve = std::max<std::size_t>(256, boundedSearchCells);
+  nodes.reserve(initialNodeReserve);
+  nodeIndex.reserve(initialNodeReserve);
   auto getOrCreate = [&](const std::array<int, 3>& pos,
                          int crossingBudget,
                          const std::string& crossingNet,
                          bool violated,
                          const std::set<std::string>& violatedNets) {
-    const auto key = posKey(pos);
+    const GridNodeKey key{pos};
     auto it = nodeIndex.find(key);
     if (it != nodeIndex.end()) {
       return it->second;
@@ -3569,7 +3608,7 @@ LidarAstarRouteResult routeSingleNetGrid(LidarRuntimeView& db,
     return index;
   };
 
-  HeapDict nodepq(nodes);
+  HeapDict nodepq(nodes, initialNodeReserve);
   auto traceSetOperation = [&](std::size_t index, bool existed) {
     if (!traceThisNet || traceSetStart <= 0) {
       return;
@@ -3685,6 +3724,7 @@ LidarAstarRouteResult routeSingleNetGrid(LidarRuntimeView& db,
       if (stepsIt == state.nextSteps.end()) {
         nodes[currentIndex].neighborsComputed = true;
       } else {
+        neighbors.reserve(stepsIt->second.size());
         ++result.expandedNodes;
         for (const auto& astarStep : stepsIt->second) {
           bool enablePrediction = true;
@@ -3792,9 +3832,22 @@ LidarAstarRouteResult routeSingleNetGrid(LidarRuntimeView& db,
       if (neighbor.visited) {
         continue;
       }
+      const bool isCrossing = nbType == "crossing_0" || nbType == "crossing_45";
+      const bool isStraight0 = nbType == "straight_0";
+      const bool isStraight45 = nbType == "straight_45";
+      const bool isStraight = isStraight0 || isStraight45;
+      const bool isBend45 = nbType == "bend_45_1" || nbType == "bend_45_2";
       double costG = 0.0;
-      if (nbType == "crossing_0" || nbType == "crossing_45") {
+      if (isCrossing) {
         costG = currentNode.costG + config.lossCrossing;
+      } else if (isStraight0) {
+        costG = currentNode.costG + state.straight0Cost;
+      } else if (isStraight45) {
+        costG = currentNode.costG + state.straight45Cost;
+      } else if (isBend45) {
+        costG = currentNode.costG + state.bend45Cost;
+      } else if (nbType == "bend_90") {
+        costG = currentNode.costG + state.bend90Cost;
       } else {
         costG = currentNode.costG + state.stepG.at(nbType);
       }
@@ -3819,14 +3872,14 @@ LidarAstarRouteResult routeSingleNetGrid(LidarRuntimeView& db,
           if (state.repel
               && (neighbor.pos[2] + static_cast<int>(std::round(endPort.orientation))) % 180 != 0
               && net.failedCount > 1) {
-            if (nbType == "straight_0") {
+            if (isStraight0) {
               count = drc.checkSpacing(neighbor.pos, 5, {});
-            } else if (nbType == "straight_45") {
+            } else if (isStraight45) {
               count = drc.checkSpacing(neighbor.pos, 4, {});
             }
             costG += count * config.lossCongestion;
           } else if (!state.repel) {
-            if (nbType == "straight_0" || nbType == "straight_45") {
+            if (isStraight) {
               count = drc.checkSpacing(neighbor.pos, state.unrouted, groups);
             }
             if (count > 0) {
@@ -3875,9 +3928,9 @@ LidarAstarRouteResult routeSingleNetGrid(LidarRuntimeView& db,
           std::cerr.flags(oldFlags);
           std::cerr.precision(oldPrecision);
         }
-        if (nbType == "straight_0" || nbType == "straight_45") {
+        if (isStraight) {
           neighbor.straightCount = currentNode.straightCount + 1;
-        } else if (nbType == "bend_45_1" || nbType == "bend_45_2") {
+        } else if (isBend45) {
           neighbor.straightCount = 0;
         }
         neighbor.costG = costG;

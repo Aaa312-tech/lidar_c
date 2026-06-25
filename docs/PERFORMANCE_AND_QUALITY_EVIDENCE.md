@@ -83,14 +83,17 @@ The accepted optimization stack is:
 H005: A* allocation reserve
 H007: structured A* node keys
 H008: unordered HeapDict entry lookup
+H010: cached A* step costs and reused step-type predicates
 ```
 
-In the research validation run, this stack was compared against the initial C++
-seed on selected larger cases with paired baseline/candidate repetitions.
+In the research validation run, the H005+H007+H008 stack was compared against
+the initial C++ seed on selected larger cases with paired baseline/candidate
+repetitions. H010 was then compared separately against H008.
 
-Validated paired A/B result:
+Validated direct cumulative paired A/B result:
 
 ```text
+scope: initial C++ seed -> H005+H007+H008
 cases: clements_16x16, mrr_weight_bank_16x16, multiportmmi_16x16
 repetitions: 3 per case
 quality same in all repetitions: true
@@ -99,11 +102,36 @@ average route-core delta: -9.057515%
 average full-flow delta: -1.612740%
 ```
 
+Validated H010 incremental paired A/B result:
+
+```text
+scope: H008 -> H010
+cases: clements_16x16, multiportmmi_8x8
+repetitions: 3 per case
+quality same in all repetitions: true
+GDS exact in all repetitions: true
+average route-core delta: -9.949529%
+average full-flow delta: -9.582883%
+```
+
+Direct full-suite GDS preservation:
+
+```text
+scope: initial C++ seed -> H005+H007+H008+H010
+cases: 9
+exact_file_match: 9 / 9
+layer-XOR nonzero rows: 0
+xor_total_area_um2: 0.0 for every case
+```
+
 Interpretation:
 
-The defensible performance claim is the repeated route-core improvement. The
-full-flow improvement is smaller because it includes YAML conversion, Python
-GDS rendering, KLayout/GDS writing, and filesystem I/O.
+The defensible cumulative performance claim is the repeated seed-to-H008
+route-core improvement. H010 adds a separate positive incremental timing signal
+against H008, but its confidence intervals were wide, so it should be described
+as a conservative hot-loop improvement rather than a new seed-to-H010 cumulative
+percentage. Full-flow measurements include YAML conversion, Python GDS
+rendering, KLayout/GDS writing, and filesystem I/O.
 
 ## Negative Runtime Result
 

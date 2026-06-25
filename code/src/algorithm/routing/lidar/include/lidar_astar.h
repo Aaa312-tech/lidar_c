@@ -36,6 +36,10 @@ struct LidarAstarInitState
   int         bend45Part1 = 0;
   int         bend45Part2 = 0;
   int         predictLength = 0;
+  double      straight0Cost = 0.0;
+  double      straight45Cost = 0.0;
+  double      bend45Cost = 0.0;
+  double      bend90Cost = 0.0;
   std::map<std::string, double> stepG;
   std::map<int, std::vector<LidarAstarStep>> nextSteps;
   std::string startPortName;
