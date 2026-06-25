@@ -12,22 +12,24 @@ the router during generation.
 
 ## Current Public Validation
 
-The latest packaged validation is the H013 reference run. It adds MRR
-geometry-quality cleanup on top of the H010 speed stack.
+The latest packaged validation is the H015 reference run. It adds MRR
+geometry-quality cleanup on top of the H010 speed stack and the H011/H013
+quality fixes.
 
 ```text
-results/research_evidence/h013_public_validation_summary.json
+results/research_evidence/h015_public_validation_summary.json
 ```
 
 Primary machine-readable evidence:
 
 ```text
-results/research_evidence/h013_public_validation_summary.json
-results/research_evidence/h013_public_validation_evidence_ledger.csv
-results/research_evidence/h013_public_validation_evidence_ledger.json
-results/research_evidence/h013_public_validation_run_summary.csv
-results/research_evidence/h013_vs_h010_reference_gds_pair_summary.csv
-results/research_evidence/h013_standard_gds_pair_summary.csv
+results/research_evidence/h015_public_validation_summary.json
+results/research_evidence/h015_public_validation_evidence_ledger.csv
+results/research_evidence/h015_public_validation_evidence_ledger.json
+results/research_evidence/h015_public_validation_run_summary.csv
+results/research_evidence/h015_vs_h013_reference_gds_pair_summary.csv
+results/research_evidence/h015_standard_gds_pair_summary.csv
+results/research_evidence/h015_ab_timing_n3_summary_by_case.csv
 ```
 
 The concrete shipped GDS files used as package references are:
@@ -48,7 +50,7 @@ The current reproduction run should write the same GDS names to a fresh checks
 directory, for example:
 
 ```text
-<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h013_full/
+<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h015_full/
 ```
 
 The evidence ledger records both the shipped GDS hash and the reproduced-run
@@ -63,24 +65,24 @@ Full public run:
 | benchmark cases | 9 |
 | completed cases | 9 |
 | DRC-clean cases | 6 |
-| total DRC markers | 99 |
-| route-geometry markers | 98 |
-| marker delta vs H010 | -20 |
-| GDS exact matches vs H010 reference | 7 / 9 |
+| total DRC markers | 89 |
+| route-geometry markers | 88 |
+| marker delta vs H010 | -30 |
+| GDS exact matches vs H013 reference | 7 / 9 |
 
 Per-case quality and speed:
 
 | case | clean | markers | route-core s | full-flow s | GDS exact vs reference |
 |---|---:|---:|---:|---:|---:|
-| toy_example_gp | 0 | 1 | 0.132931 | 17.870723 | yes |
-| mrr_weight_bank_4x4 | 1 | 0 | 1.714919 | 25.807199 | yes |
-| mrr_weight_bank_8x8 | 0 | 6 | 3.469923 | 40.464615 | changed vs H010 |
-| mrr_weight_bank_16x16 | 0 | 92 | 37.130614 | 138.668979 | changed vs H010 |
-| clements_8x8 | 1 | 0 | 1.429491 | 39.125370 | yes |
-| clements_16x16 | 1 | 0 | 16.064827 | 101.493727 | yes |
-| multiportmmi_8x8 | 1 | 0 | 29.019144 | 75.567298 | yes |
-| multiportmmi_16x16 | 1 | 0 | 109.331169 | 209.487125 | yes |
-| multiportmmi_32x32 | 1 | 0 | 631.769004 | 947.124771 | yes |
+| toy_example_gp | 0 | 1 | 0.180067 | 16.472886 | yes |
+| mrr_weight_bank_4x4 | 1 | 0 | 1.746271 | 23.400706 | yes |
+| mrr_weight_bank_8x8 | 0 | 2 | 3.351774 | 38.133181 | changed vs H013 |
+| mrr_weight_bank_16x16 | 0 | 86 | 43.595247 | 149.194396 | changed vs H013 |
+| clements_8x8 | 1 | 0 | 1.596117 | 40.726024 | yes |
+| clements_16x16 | 1 | 0 | 14.872963 | 101.407042 | yes |
+| multiportmmi_8x8 | 1 | 0 | 30.590119 | 73.612593 | yes |
+| multiportmmi_16x16 | 1 | 0 | 100.828301 | 208.062304 | yes |
+| multiportmmi_32x32 | 1 | 0 | 613.014050 | 948.964538 | yes |
 
 The non-clean cases are not hidden:
 
@@ -89,10 +91,10 @@ toy_example_gp:
   known component-geometry marker in the input-sized smoke case
 
 mrr_weight_bank_8x8:
-  6 route-geometry markers
+  2 route-geometry markers
 
 mrr_weight_bank_16x16:
-  92 route-geometry markers
+  86 route-geometry markers
 ```
 
 ## Standard-GDS Agreement
@@ -118,14 +120,14 @@ near-zero for the two MultiportMMI standards.
 
 ## Runtime Results
 
-The H013 public validation run reports:
+The H015 public validation run reports:
 
 | metric | value |
 |---|---:|
-| total route-core time | 830.062022 s |
-| total full-flow time | 1595.609807 s |
-| average route-core time | 92.229114 s |
-| average full-flow time | 177.289979 s |
+| total route-core time | 809.774909 s |
+| total full-flow time | 1599.973670 s |
+| average route-core time | 89.974990 s |
+| average full-flow time | 177.774852 s |
 
 The strongest repeated speed claims are the paired A/B trials from the research
 workflow:
@@ -163,11 +165,12 @@ H008: replace HeapDict ordered entry lookup with unordered membership lookup
 H010: cache fixed A* step costs and reuse step-type predicates in the hot loop
 ```
 
-It also contains two accepted geometry-quality fixes:
+It also contains three accepted geometry-quality fixes:
 
 ```text
 H011: reject supplemental crossing cells closer than one crossing-cell width
 H013: allow first access-segment detours for shared MRR fanout lanes
+H015: choose the latest safe first-access turnpoint before the overlap begins
 ```
 
 These changes are intentionally limited:
@@ -223,8 +226,8 @@ After merging the package into a full PIC-DB checkout and building
   -PythonExe "<GDS_RENDER_PYTHON>" `
   -DriverPython "<GDS_RENDER_PYTHON>" `
   -BenchmarkRoot "<LIDAR_C_ROOT>\code\benchmarks\picroute" `
-  -OutputDir build_native_release\checks\lidar_c_public_h013_full `
-  -Prefix lidar_c_public_h013_full
+  -OutputDir build_native_release\checks\lidar_c_public_h015_full `
+  -Prefix lidar_c_public_h015_full
 ```
 
 Then compare the reproduced GDS files against the package references:

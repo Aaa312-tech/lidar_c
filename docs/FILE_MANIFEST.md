@@ -89,12 +89,18 @@ These are input benchmarks, not standard routed GDS files.
 | `results/reference_gds_compare/gds_pair_summary.csv` | Standard/Python/C++ GDS pair comparisons. |
 | `results/reference_gds_compare/gds_layer_xor.csv` | Layer-by-layer XOR. |
 | `results/reference_gds_compare/gds_xor_hotspots.csv` | XOR hotspot report. |
-| `results/research_evidence/README.md` | Explains the portable H013 evidence tables and retained H010 evidence. |
-| `results/research_evidence/h013_public_validation_summary.json` | Current top-level public validation metrics. |
-| `results/research_evidence/h013_public_validation_evidence_ledger.csv` | Current per-case GDS, DRC, timing, hash, and XOR evidence ledger. |
-| `results/research_evidence/h013_vs_h010_reference_gds_pair_summary.csv` | Previous H010 reference GDS vs current H013 GDS comparison. |
-| `results/research_evidence/h013_standard_gds_pair_summary.csv` | External standard GDS vs current H013 GDS comparison. |
+| `results/research_evidence/README.md` | Explains the portable H015 evidence tables and retained H013/H010 evidence. |
+| `results/research_evidence/h015_public_validation_summary.json` | Current top-level public validation metrics. |
+| `results/research_evidence/h015_public_validation_evidence_ledger.csv` | Current per-case GDS, DRC, timing, hash, and XOR evidence ledger. |
+| `results/research_evidence/h015_vs_h013_reference_gds_pair_summary.csv` | Previous H013 reference GDS vs current H015 GDS comparison. |
+| `results/research_evidence/h015_standard_gds_pair_summary.csv` | External standard GDS vs current H015 GDS comparison. |
+| `results/research_evidence/h015_ab_timing_n3_summary_by_case.csv` | Three-repetition H015 timing/quality A/B summary. |
+| `results/research_evidence/h013_public_validation_summary.json` | Retained H013 top-level public validation metrics. |
+| `results/research_evidence/h013_public_validation_evidence_ledger.csv` | Retained H013 per-case GDS, DRC, timing, hash, and XOR evidence ledger. |
+| `results/research_evidence/h013_vs_h010_reference_gds_pair_summary.csv` | Previous H010 reference GDS vs H013 GDS comparison. |
+| `results/research_evidence/h013_standard_gds_pair_summary.csv` | External standard GDS vs H013 GDS comparison. |
 | `results/research_evidence/h013_min_ab_timing_summary_by_case.csv` | One-repetition H013 timing/quality A/B summary. |
+| `results/research_evidence/h013_ab_timing_n3_summary_by_case.csv` | Three-repetition H013 timing/quality A/B summary. |
 | `results/research_evidence/h010_public_validation_summary.json` | Top-level public validation metrics. |
 | `results/research_evidence/h010_public_validation_evidence_ledger.csv` | Per-case GDS, DRC, timing, hash, and XOR evidence ledger. |
 | `results/research_evidence/h010_reference_vs_public_run_gds_pair_summary.csv` | Shipped-reference GDS vs reproduced public-run GDS comparison. |

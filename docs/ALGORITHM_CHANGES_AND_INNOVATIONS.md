@@ -229,7 +229,7 @@ post path export
 
 ### 3.7.1 Crossing Separation And First-Access Detours
 
-H011/H013 在 post-process 层增加了两个质量修复：
+H011/H013/H015 在 post-process 层增加了三个质量修复：
 
 ```text
 H011: supplemental crossing 插入时，要求新 crossing center 与既有 crossing center
@@ -238,9 +238,14 @@ H011: supplemental crossing 插入时，要求新 crossing center 与既有 cros
 H013: fanout access overlap 修复不再只处理中间水平段，也允许处理起始端口后的
       第一段水平 access；修复时保留端口初始切向，再绕开被其它 access lane 占用的
       共享通道。
+
+H015: 第一段 access 需要转弯绕开共享通道时，不再使用固定 clearance 后的最早
+      turnpoint，而是在 overlap 开始前选择 latest safe turnpoint。这样可减少
+      turnpoint 与相邻短 S-bend/access connector 的局部重叠，同时保持端口初始
+      切向和后续绕行语义。
 ```
 
-这两个修复不读取标准 GDS，也不按 case name、net name 或固定坐标触发。触发条件来自
+这些修复不读取标准 GDS，也不按 case name、net name 或固定坐标触发。触发条件来自
 当前 route path 的几何关系：
 
 ```text
@@ -248,14 +253,15 @@ crossing center distance
 access segment horizontal overlap
 port orientation
 available tangent distance before overlap
+latest safe x-coordinate before overlap start
 post-route access orientation validation
 ```
 
 验证结果：
 
 ```text
-MRR 8x8 markers: 8 -> 6
-MRR 16x16 markers: 110 -> 92
+MRR 8x8 markers: 8 -> 6 -> 2
+MRR 16x16 markers: 110 -> 92 -> 86
 Clements and MultiportMMI reference GDS: unchanged
 standard-GDS comparison for the three provided standard files: unchanged
 ```
@@ -472,7 +478,7 @@ default 9-case regression can run end to end
 
 ```text
 MMI crossing geometry 仍有极小 XOR
-MRR 8x8 / 16x16 仍有 route geometry markers
+MRR 8x8 / 16x16 仍有 route geometry markers, currently 2 / 86 in the H015 reference run
 end-to-end runtime 仍受 Python render 影响
 ```
 

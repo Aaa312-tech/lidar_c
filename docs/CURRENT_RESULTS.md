@@ -26,22 +26,22 @@ multiportmmi_32x32_cpp.gds
 
 | case | status | DRC clean | markers | routes | crossings | C++ core route time |
 |---|---|---:|---:|---:|---:|---:|
-| toy_example_gp | ok | 0 | 1 | 2 | 0 | 0.132931s |
-| mrr_weight_bank_4x4 | ok | 1 | 0 | 36 | 3 | 1.714919s |
-| mrr_weight_bank_8x8 | ok | 0 | 6 | 105 | 6 | 3.469923s |
-| mrr_weight_bank_16x16 | ok | 0 | 92 | 375 | 35 | 37.130614s |
-| clements_8x8 | ok | 1 | 0 | 79 | 0 | 1.429491s |
-| clements_16x16 | ok | 1 | 0 | 290 | 2 | 16.064827s |
-| multiportmmi_8x8 | ok | 1 | 0 | 177 | 33 | 29.019144s |
-| multiportmmi_16x16 | ok | 1 | 0 | 349 | 63 | 109.331169s |
-| multiportmmi_32x32 | ok | 1 | 0 | 695 | 125 | 631.769004s |
+| toy_example_gp | ok | 0 | 1 | 2 | 0 | 0.180067s |
+| mrr_weight_bank_4x4 | ok | 1 | 0 | 36 | 3 | 1.746271s |
+| mrr_weight_bank_8x8 | ok | 0 | 2 | 106 | 6 | 3.351774s |
+| mrr_weight_bank_16x16 | ok | 0 | 86 | 389 | 36 | 43.595247s |
+| clements_8x8 | ok | 1 | 0 | 79 | 0 | 1.596117s |
+| clements_16x16 | ok | 1 | 0 | 290 | 2 | 14.872963s |
+| multiportmmi_8x8 | ok | 1 | 0 | 177 | 33 | 30.590119s |
+| multiportmmi_16x16 | ok | 1 | 0 | 349 | 63 | 100.828301s |
+| multiportmmi_32x32 | ok | 1 | 0 | 695 | 125 | 613.014050s |
 
 Notes:
 
 ```text
 toy_example_gp has a known input component overlap marker.
 mrr_weight_bank_8x8 and mrr_weight_bank_16x16 still need more MRR-specific cleanup,
-but H011/H013 reduce their markers from 8/110 to 6/92.
+but H011/H013/H015 reduce their markers from 8/110 to 2/86.
 Clements and Multiport MMI cases are DRC clean in this latest run.
 ```
 

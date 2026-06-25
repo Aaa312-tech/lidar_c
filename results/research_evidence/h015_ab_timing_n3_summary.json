@@ -1,0 +1,13 @@
+{
+  "manifest": "runs\\timing_trials\\h015_quality_ab_n3\\trials_manifest.csv",
+  "cases": [
+    "mrr_weight_bank_16x16",
+    "mrr_weight_bank_8x8",
+    "multiportmmi_16x16"
+  ],
+  "case_count": 3,
+  "avg_route_core_delta_percent": -1.416757,
+  "avg_full_flow_delta_percent": -1.906418,
+  "all_quality_same": false,
+  "all_gds_exact": false
+}

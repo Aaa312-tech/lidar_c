@@ -2038,11 +2038,13 @@ bool repairOneFanoutAccessOverlap(PostRoutePath& throughPath,
       const double overlapStart =
           std::max(std::min(segStart[0], segEnd[0]),
                    std::min(accessStart[0], accessEnd[0]));
-      const double tangentX =
-          snapGdsFactoryGrid(segStart[0] + crossingClearance);
-      if (tangentX >= overlapStart - config.gridResolution) {
+      const double latestTangentX =
+          std::min(overlapStart - config.gridResolution,
+                   segEnd[0] - config.gridResolution);
+      if (latestTangentX < segStart[0] + crossingClearance - eps) {
         continue;
       }
+      const double tangentX = snapGdsFactoryGrid(latestTangentX);
       startTangentPoint = std::array<double, 2>{tangentX, segStart[1]};
     }
 

@@ -33,17 +33,20 @@ results/reference_run/reference_run.csv
 results/reference_run/reference_run.json
 ```
 
-The H013 public validation evidence ledger is in:
+The current H015 public validation evidence ledger is in:
+
+```text
+results/research_evidence/h015_public_validation_summary.json
+results/research_evidence/h015_public_validation_evidence_ledger.csv
+results/research_evidence/h015_public_validation_evidence_ledger.json
+```
+
+The earlier H013 and H010 public validation evidence ledgers are retained in:
 
 ```text
 results/research_evidence/h013_public_validation_summary.json
 results/research_evidence/h013_public_validation_evidence_ledger.csv
 results/research_evidence/h013_public_validation_evidence_ledger.json
-```
-
-The earlier H010 public validation evidence ledger is retained in:
-
-```text
 results/research_evidence/h010_public_validation_summary.json
 results/research_evidence/h010_public_validation_evidence_ledger.csv
 results/research_evidence/h010_public_validation_evidence_ledger.json
@@ -99,21 +102,21 @@ run. `toy_example_gp` has a known input component overlap marker. The larger MRR
 cases still retain route-geometry markers and are documented as remaining work
 rather than hidden as successes.
 
-H013 public validation summary:
+H015 public validation summary:
 
 ```text
 cases: 9
 ok_cases: 9
 DRC-clean cases: 6
-total markers: 99
-route-geometry markers: 98
-MRR marker delta vs H010 public validation: -20
-changed GDS vs H010 reference: mrr_weight_bank_8x8, mrr_weight_bank_16x16
+total markers: 89
+route-geometry markers: 88
+MRR marker delta vs H010 public validation: -30
+changed GDS vs H013 reference: mrr_weight_bank_8x8, mrr_weight_bank_16x16
 standard-GDS metrics unchanged for clements_8x8 and the two MultiportMMI cases
 ```
 
-The H013 reference GDS files in `results/reference_run/` are now the packaged
-reference outputs. Compared with the H010 reference, 7 / 9 GDS files remain
+The H015 reference GDS files in `results/reference_run/` are now the packaged
+reference outputs. Compared with the H013 reference, 7 / 9 GDS files remain
 byte-identical; only `mrr_weight_bank_8x8` and `mrr_weight_bank_16x16` change.
 
 ## Validated Speed Claim
@@ -127,15 +130,16 @@ H008: unordered HeapDict entry lookup
 H010: cached A* step costs and reused step-type predicates
 ```
 
-H011 and H013 are quality fixes, not speed optimizations:
+H011, H013, and H015 are quality fixes, not speed optimizations:
 
 ```text
 H011: enforce crossing-cell center separation for supplemental crossings
 H013: allow first fanout-access segment detours when another access lane reuses it
+H015: choose the latest safe first-access turnpoint before the overlap begins
 ```
 
-Single-pair minimum A/B timing for H013 showed the expected quality improvement
-and a small runtime cost on the three sampled cases:
+One-repetition minimum A/B timing for H013 showed the expected quality
+improvement and a small runtime cost on the three sampled cases:
 
 ```text
 cases: mrr_weight_bank_8x8, mrr_weight_bank_16x16, multiportmmi_16x16
@@ -143,6 +147,21 @@ repetitions: 1
 average route-core delta: +4.781203%
 average full-flow delta: +4.347481%
 interpretation: quality improvement accepted; more repetitions required for a speed claim
+```
+
+The follow-up H013 n=3 timing run is archived in
+`results/research_evidence/h013_ab_timing_n3_summary_by_case.csv`. It still
+supports treating H013 as a quality change rather than a speed claim.
+
+The accepted H015 quality fix was measured with n=3 A/B timing against H013 on
+the same three sampled cases:
+
+```text
+cases: mrr_weight_bank_8x8, mrr_weight_bank_16x16, multiportmmi_16x16
+repetitions: 3
+average route-core delta: -1.416757%
+average full-flow delta: -1.906418%
+interpretation: quality improvement accepted; selected n=3 timing does not show a runtime penalty
 ```
 
 In the research validation run, the H005+H007+H008 stack was compared against
