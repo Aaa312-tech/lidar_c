@@ -5,6 +5,7 @@ This directory contains archived outputs from the current C++ LiDAR regression.
 ```text
 reference_run/
 reference_gds_compare/
+research_evidence/
 ```
 
 `reference_run` contains generated C++ GDS files for the default 9 benchmark
@@ -14,6 +15,12 @@ portable relative paths.
 `reference_gds_compare` contains geometry comparison reports against external
 standard GDS files. The standard files themselves are not included; report paths
 use the placeholder `standard_gds/`.
+
+`research_evidence` contains the H010 public validation ledger. It ties every
+case to concrete benchmark YAML, GDS file names, SHA256 hashes, DRC metrics,
+timing metrics, and GDS XOR comparison reports. Paths use placeholders such as
+`<PICDB_ROOT>` and `<STANDARD_GDS_DIR>` so the evidence can be read after
+moving the package.
 
 These files are reference artifacts. New runs should normally write to a build
 or checks directory inside the host PIC-DB checkout.

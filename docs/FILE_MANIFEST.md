@@ -89,6 +89,11 @@ These are input benchmarks, not standard routed GDS files.
 | `results/reference_gds_compare/gds_pair_summary.csv` | Standard/Python/C++ GDS pair comparisons. |
 | `results/reference_gds_compare/gds_layer_xor.csv` | Layer-by-layer XOR. |
 | `results/reference_gds_compare/gds_xor_hotspots.csv` | XOR hotspot report. |
+| `results/research_evidence/README.md` | Explains the portable H010 evidence tables. |
+| `results/research_evidence/h010_public_validation_summary.json` | Top-level public validation metrics. |
+| `results/research_evidence/h010_public_validation_evidence_ledger.csv` | Per-case GDS, DRC, timing, hash, and XOR evidence ledger. |
+| `results/research_evidence/h010_reference_vs_public_run_gds_pair_summary.csv` | Shipped-reference GDS vs reproduced public-run GDS comparison. |
+| `results/research_evidence/h010_standard_vs_public_run_gds_pair_summary.csv` | External standard GDS vs reproduced public-run GDS comparison. |
 | `results/README.md` | Explains archived results and sanitized paths. |
 | `standard_gds/README.md` | Placeholder note for external standard GDS files, which are not included. |
 
@@ -103,6 +108,7 @@ These are input benchmarks, not standard routed GDS files.
 | `docs/EXPERIENCE_AND_TROUBLESHOOTING.md` | Lessons learned and debugging playbook. |
 | `docs/ENVIRONMENT.md` | C++ and Python environment dependencies. |
 | `docs/TRANSFER_GUIDE.md` | How to move this package into another PIC-DB tree. |
+| `docs/RESEARCH_ARTIFACT.md` | Research-result summary with quality, speed, GDS evidence, and agentic method. |
 
 ## Helper tools
 

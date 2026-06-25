@@ -73,10 +73,12 @@ lidar_c/
     FILE_MANIFEST.md
     METHODOLOGY.md
     PERFORMANCE_AND_QUALITY_EVIDENCE.md
+    RESEARCH_ARTIFACT.md
     TRANSFER_GUIDE.md
   results/
     reference_run/
     reference_gds_compare/
+    research_evidence/
   standard_gds/
     README.md
   tools/
@@ -226,6 +228,7 @@ docs/TRANSFER_GUIDE.md
 docs/FILE_MANIFEST.md
 docs/CURRENT_RESULTS.md
 docs/PERFORMANCE_AND_QUALITY_EVIDENCE.md
+docs/RESEARCH_ARTIFACT.md
 ```
 
 ## Current Risks
