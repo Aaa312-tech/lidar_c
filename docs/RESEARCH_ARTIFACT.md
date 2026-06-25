@@ -26,6 +26,8 @@ Primary machine-readable evidence:
 results/research_evidence/h015_public_validation_summary.json
 results/research_evidence/h015_public_validation_evidence_ledger.csv
 results/research_evidence/h015_public_validation_evidence_ledger.json
+results/research_evidence/h015_effect_evidence_matrix.csv
+results/research_evidence/research_claims_ledger.csv
 results/research_evidence/h015_public_validation_run_summary.csv
 results/research_evidence/h015_vs_h013_reference_gds_pair_summary.csv
 results/research_evidence/h015_standard_gds_pair_summary.csv
@@ -55,6 +57,10 @@ directory, for example:
 
 The evidence ledger records both the shipped GDS hash and the reproduced-run
 GDS hash for every case.
+
+For review or paper writing, use `results/research_evidence/research_claims_ledger.csv`
+as the claim index and `results/research_evidence/h015_effect_evidence_matrix.csv`
+as the per-case quality/runtime/GDS matrix.
 
 ## Quality Results
 

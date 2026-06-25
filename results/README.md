@@ -23,5 +23,12 @@ hashes, DRC metrics, timing metrics, and GDS XOR comparison reports. Paths use
 placeholders such as `<PICDB_ROOT>`, `<STANDARD_GDS_DIR>`, and
 `<EXPERIMENT_ROOT>` so the evidence can be read after moving the package.
 
+For paper-style review, start with:
+
+```text
+research_evidence/h015_effect_evidence_matrix.csv
+research_evidence/research_claims_ledger.csv
+```
+
 These files are reference artifacts. New runs should normally write to a build
 or checks directory inside the host PIC-DB checkout.

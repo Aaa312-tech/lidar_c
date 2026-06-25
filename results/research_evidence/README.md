@@ -19,6 +19,10 @@ read after moving the package:
 | `h015_public_validation_summary.json` | Current top-level 9-case quality and runtime summary. |
 | `h015_public_validation_evidence_ledger.csv` | Current per-case ledger with benchmark path, GDS path, DRC markers, timing, hashes, and XOR metrics. |
 | `h015_public_validation_evidence_ledger.json` | JSON form of the current evidence ledger. |
+| `h015_effect_evidence_matrix.csv` | Current per-case matrix joining generated GDS, SHA256, DRC, runtime, H013 GDS comparison, standard-GDS comparison, and selected A/B timing. |
+| `h015_effect_evidence_matrix.json` | JSON form of the current effect evidence matrix. |
+| `research_claims_ledger.csv` | Research claim ledger mapping quality/runtime/GDS claims to concrete evidence files. |
+| `research_claims_ledger.json` | JSON form of the research claim ledger. |
 | `h015_public_validation_run_summary.csv` | Sanitized H015 regression summary produced by `run_lidar_benchmark_regression.py`. |
 | `h015_public_validation_run_summary.json` | JSON form of the sanitized H015 regression summary. |
 | `h015_vs_h013_reference_gds_pair_summary.csv` | GDS hash/geometry comparison between the previous H013 reference GDS and current H015 GDS. |
