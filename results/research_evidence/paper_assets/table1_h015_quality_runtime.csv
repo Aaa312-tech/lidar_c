@@ -1,0 +1,10 @@
+family,case,clean,markers,route_geometry_markers,crossings,route_core_s,full_flow_s,generated_gds,sha256_12
+smoke,toy_example_gp,0,1,0,0,0.180067,16.472886,results/reference_run/toy_example_gp_cpp.gds,33742a5ea164
+MRR,mrr_weight_bank_4x4,1,0,0,3,1.746271,23.400706,results/reference_run/mrr_weight_bank_4x4_cpp.gds,a7757457e0ed
+MRR,mrr_weight_bank_8x8,0,2,2,6,3.351774,38.133181,results/reference_run/mrr_weight_bank_8x8_cpp.gds,c4b393e68667
+MRR,mrr_weight_bank_16x16,0,86,86,36,43.595247,149.194396,results/reference_run/mrr_weight_bank_16x16_cpp.gds,008e5c31920b
+Clements,clements_8x8,1,0,0,0,1.596117,40.726024,results/reference_run/clements_8x8_cpp.gds,d6c4df70866d
+Clements,clements_16x16,1,0,0,2,14.872963,101.407042,results/reference_run/clements_16x16_cpp.gds,31b674443b15
+MultiportMMI,multiportmmi_8x8,1,0,0,33,30.590119,73.612593,results/reference_run/multiportmmi_8x8_cpp.gds,b03b2651bc8c
+MultiportMMI,multiportmmi_16x16,1,0,0,63,100.828301,208.062304,results/reference_run/multiportmmi_16x16_cpp.gds,c76bf0d15969
+MultiportMMI,multiportmmi_32x32,1,0,0,125,613.014050,948.964538,results/reference_run/multiportmmi_32x32_cpp.gds,39f27135fd87

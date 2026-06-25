@@ -1,0 +1,7 @@
+case,iteration,markers
+mrr_weight_bank_8x8,H010,8
+mrr_weight_bank_8x8,H013,6
+mrr_weight_bank_8x8,H015,2
+mrr_weight_bank_16x16,H010,110
+mrr_weight_bank_16x16,H013,92
+mrr_weight_bank_16x16,H015,86

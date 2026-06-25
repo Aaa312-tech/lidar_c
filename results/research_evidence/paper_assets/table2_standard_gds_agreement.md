@@ -1,0 +1,9 @@
+# Table 2: Standard-GDS Agreement
+
+External standard GDS files are validation inputs only and are not shipped.
+
+| case | generated_gds | standard_gds | standard_xor_um2 | overlap_ratio | interpretation |
+| --- | --- | --- | --- | --- | --- |
+| clements_8x8 | results/reference_run/clements_8x8_cpp.gds | standard_gds\clements_8x8_comp_LiDAR_id-2.gds | 0.000000 | 1.000000000 | exact geometry |
+| multiportmmi_8x8 | results/reference_run/multiportmmi_8x8_cpp.gds | standard_gds\multiportmmi_8x8_comp_LiDAR_id-2_bak.gds | 5.091752 | 0.999978471 | DRC-clean, near-exact crossing-area residual |
+| multiportmmi_16x16 | results/reference_run/multiportmmi_16x16_cpp.gds | standard_gds\multiportmmi_16x16_comp_LiDAR_id-2_bak.gds | 18.680864 | 0.999969043 | DRC-clean, near-exact crossing-area residual |

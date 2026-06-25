@@ -86,12 +86,19 @@ Primary evidence tables:
 results/reference_run/reference_run.csv
 results/research_evidence/h015_effect_evidence_matrix.csv
 results/research_evidence/research_claims_ledger.csv
+results/research_evidence/paper_assets/
 ```
 
 Validation command:
 
 ```powershell
 python tools\validate_research_artifact.py --root .
+```
+
+Regenerate all paper tables and figure-data CSV files:
+
+```powershell
+python tools\generate_paper_assets.py --root .
 ```
 
 ## Table 1: H015 Quality and Runtime
@@ -238,8 +245,11 @@ Figure 4: Standard-GDS XOR hotspots for the three standard cases.
 Figure 5: Route-core vs full-flow timing breakdown.
 ```
 
-The repository currently ships the data for these figures but does not include a
-plotting pipeline.
+The repository ships plotting-tool-agnostic figure-data CSV files under:
+
+```text
+results/research_evidence/paper_assets/
+```
 
 ## Threats To Validity
 
@@ -277,5 +287,6 @@ docs/SCIENTIFIC_RESULT.md
 docs/LAE_LIDAR_AGENT_PROTOCOL.md
 results/research_evidence/research_claims_ledger.csv
 results/research_evidence/h015_effect_evidence_matrix.csv
+results/research_evidence/paper_assets/
 results/reference_run/*.gds
 ```

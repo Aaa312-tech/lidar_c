@@ -1,0 +1,10 @@
+case,route_core_s,full_flow_s,non_core_flow_s,generated_gds
+toy_example_gp,0.180067,16.472886,16.292819,results/reference_run/toy_example_gp_cpp.gds
+mrr_weight_bank_4x4,1.746271,23.400706,21.654435,results/reference_run/mrr_weight_bank_4x4_cpp.gds
+mrr_weight_bank_8x8,3.351774,38.133181,34.781407,results/reference_run/mrr_weight_bank_8x8_cpp.gds
+mrr_weight_bank_16x16,43.595247,149.194396,105.599149,results/reference_run/mrr_weight_bank_16x16_cpp.gds
+clements_8x8,1.596117,40.726024,39.129907,results/reference_run/clements_8x8_cpp.gds
+clements_16x16,14.872963,101.407042,86.534079,results/reference_run/clements_16x16_cpp.gds
+multiportmmi_8x8,30.590119,73.612593,43.022474,results/reference_run/multiportmmi_8x8_cpp.gds
+multiportmmi_16x16,100.828301,208.062304,107.234003,results/reference_run/multiportmmi_16x16_cpp.gds
+multiportmmi_32x32,613.014050,948.964538,335.950488,results/reference_run/multiportmmi_32x32_cpp.gds

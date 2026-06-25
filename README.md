@@ -98,11 +98,14 @@ lidar_c/
     reference_run/
     reference_gds_compare/
     research_evidence/
+      paper_assets/
   standard_gds/
     README.md
   tools/
+    generate_paper_assets.py
     merge_into_picdb.ps1
     run_all_cases.ps1
+    validate_research_artifact.py
 ```
 
 ## Code Scope
@@ -204,6 +207,12 @@ cd $LidarCRoot
 python tools\validate_research_artifact.py --root .
 ```
 
+Regenerate paper tables and figure-data CSV files:
+
+```powershell
+python tools\generate_paper_assets.py --root .
+```
+
 ## Environment Summary
 
 The GDS-render environment is version-sensitive. The archived reference results
@@ -258,6 +267,12 @@ docs/FILE_MANIFEST.md
 docs/CURRENT_RESULTS.md
 docs/PERFORMANCE_AND_QUALITY_EVIDENCE.md
 docs/RESEARCH_ARTIFACT.md
+```
+
+Paper-ready generated tables and figure data:
+
+```text
+results/research_evidence/paper_assets/
 ```
 
 ## Current Risks

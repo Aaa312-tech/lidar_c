@@ -231,6 +231,59 @@ def validate_claims(root: Path, errors: list[str], report: dict[str, object]) ->
     report["claims_checked"] = len(rows)
 
 
+def validate_paper_assets(root: Path, errors: list[str], report: dict[str, object]) -> None:
+    asset_dir = root / "results" / "research_evidence" / "paper_assets"
+    manifest_path = asset_dir / "asset_manifest.json"
+    require(manifest_path.exists(), f"missing_paper_asset_manifest: {manifest_path}", errors)
+    if not manifest_path.exists():
+        return
+
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    require(manifest.get("generator") == "tools/generate_paper_assets.py", "paper_asset_generator_mismatch", errors)
+    for source in manifest.get("source_files", []):
+        require((root / source).exists(), f"paper_asset_source_missing: {source}", errors)
+
+    assets = manifest.get("assets", [])
+    for entry in assets:
+        path_value = entry.get("path", "")
+        path = root / path_value
+        require(path.exists(), f"paper_asset_missing: {path_value}", errors)
+        if path.exists():
+            require(sha256_file(path) == entry.get("sha256"), f"paper_asset_sha256_mismatch: {path_value}", errors)
+            require(path.stat().st_size == int(entry.get("bytes", -1)), f"paper_asset_size_mismatch: {path_value}", errors)
+
+    summary = manifest.get("summary", {})
+    expected_summary = {
+        "table1_rows": 9,
+        "table2_rows": 3,
+        "table3_rows": 2,
+        "table4_rows": 4,
+        "mrr_figure_rows": 6,
+        "runtime_figure_rows": 9,
+        "standard_xor_rows": 3,
+    }
+    for key, expected in expected_summary.items():
+        require(summary.get(key) == expected, f"paper_asset_summary_mismatch: {key}", errors)
+
+    table_checks = {
+        "table1_h015_quality_runtime.csv": 9,
+        "table2_standard_gds_agreement.csv": 3,
+        "table3_mrr_marker_progression.csv": 2,
+        "table4_runtime_evidence.csv": 4,
+        "figure_data_mrr_marker_progression.csv": 6,
+        "figure_data_runtime_breakdown.csv": 9,
+        "figure_data_standard_xor.csv": 3,
+    }
+    for filename, expected_rows in table_checks.items():
+        path = asset_dir / filename
+        require(path.exists(), f"paper_asset_table_missing: {filename}", errors)
+        if path.exists():
+            rows = read_csv(path)
+            require(len(rows) == expected_rows, f"paper_asset_table_row_mismatch: {filename}", errors)
+
+    report["paper_assets_checked"] = len(assets) + 1
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", default=".", help="Path to the lidar_c package root.")
@@ -247,6 +300,7 @@ def main() -> int:
     validate_h015_summary(root, matrix_rows, errors, report)
     validate_standard_gds_rows(root, errors, report)
     validate_claims(root, errors, report)
+    validate_paper_assets(root, errors, report)
 
     report["status"] = "fail" if errors else "pass"
     report["errors"] = errors
@@ -275,6 +329,7 @@ def main() -> int:
         "h015_total_full_flow_s",
         "standard_gds_raw_cpp_rows",
         "claims_checked",
+        "paper_assets_checked",
     ]:
         print(f"{key}={report.get(key)}")
     return 0

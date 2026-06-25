@@ -41,6 +41,12 @@ Repository-internal verification command:
 python tools\validate_research_artifact.py --root .
 ```
 
+Paper-ready generated tables and figure data:
+
+```text
+results/research_evidence/paper_assets/
+```
+
 ## Core Contributions
 
 1. A semantics-preserving C++ implementation of the Python LiDAR routing model,

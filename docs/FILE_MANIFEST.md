@@ -97,6 +97,7 @@ These are input benchmarks, not standard routed GDS files.
 | `results/research_evidence/h015_vs_h013_reference_gds_pair_summary.csv` | Previous H013 reference GDS vs current H015 GDS comparison. |
 | `results/research_evidence/h015_standard_gds_pair_summary.csv` | External standard GDS vs current H015 GDS comparison. |
 | `results/research_evidence/h015_ab_timing_n3_summary_by_case.csv` | Three-repetition H015 timing/quality A/B summary. |
+| `results/research_evidence/paper_assets/` | Generated paper tables, Markdown table copies, figure-data CSV files, and asset manifest. |
 | `results/research_evidence/h013_public_validation_summary.json` | Retained H013 top-level public validation metrics. |
 | `results/research_evidence/h013_public_validation_evidence_ledger.csv` | Retained H013 per-case GDS, DRC, timing, hash, and XOR evidence ledger. |
 | `results/research_evidence/h013_vs_h010_reference_gds_pair_summary.csv` | Previous H010 reference GDS vs H013 GDS comparison. |
@@ -132,4 +133,5 @@ These are input benchmarks, not standard routed GDS files.
 |---|---|
 | `tools/merge_into_picdb.ps1` | Copies packaged code into a PIC-DB source tree. |
 | `tools/run_all_cases.ps1` | Runs the default 9-case regression in a PIC-DB tree. |
+| `tools/generate_paper_assets.py` | Regenerates paper-ready CSV/Markdown tables and figure-data CSV files from the evidence matrix. |
 | `tools/validate_research_artifact.py` | Validates JSON, claim ledgers, GDS existence, GDS SHA256, H015 totals, standard-GDS comparison rows, and portable paths. |

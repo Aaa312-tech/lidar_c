@@ -23,6 +23,7 @@ read after moving the package:
 | `h015_effect_evidence_matrix.json` | JSON form of the current effect evidence matrix. |
 | `research_claims_ledger.csv` | Research claim ledger mapping quality/runtime/GDS claims to concrete evidence files. |
 | `research_claims_ledger.json` | JSON form of the research claim ledger. |
+| `paper_assets/` | Generated paper-ready tables, Markdown table copies, figure-data CSV files, README, and asset manifest. |
 | `h015_public_validation_run_summary.csv` | Sanitized H015 regression summary produced by `run_lidar_benchmark_regression.py`. |
 | `h015_public_validation_run_summary.json` | JSON form of the sanitized H015 regression summary. |
 | `h015_vs_h013_reference_gds_pair_summary.csv` | GDS hash/geometry comparison between the previous H013 reference GDS and current H015 GDS. |
@@ -77,3 +78,17 @@ multiportmmi_16x16 overlap: 0.999969043
 
 The standard GDS files are not part of this repository and are not router
 inputs. They are used only to generate comparison reports.
+
+## Paper Assets
+
+Regenerate the table and figure-data assets from the repository root:
+
+```powershell
+python tools\generate_paper_assets.py --root .
+```
+
+Validate them together with the rest of the artifact:
+
+```powershell
+python tools\validate_research_artifact.py --root .
+```
