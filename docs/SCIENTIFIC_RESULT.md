@@ -35,6 +35,12 @@ results/reference_run/reference_run.csv
 results/reference_run/*.gds
 ```
 
+Repository-internal verification command:
+
+```powershell
+python tools\validate_research_artifact.py --root .
+```
+
 ## Core Contributions
 
 1. A semantics-preserving C++ implementation of the Python LiDAR routing model,

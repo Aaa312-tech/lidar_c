@@ -197,6 +197,13 @@ python tools\pr_lidar_native\scripts\compare_gds_geometry.py `
   --out-dir build_native_release\checks\reference_gds_compare
 ```
 
+Validate the packaged research artifact and evidence chain:
+
+```powershell
+cd $LidarCRoot
+python tools\validate_research_artifact.py --root .
+```
+
 ## Environment Summary
 
 The GDS-render environment is version-sensitive. The archived reference results
@@ -243,6 +250,7 @@ Detailed documents:
 docs/METHODOLOGY.md
 docs/SCIENTIFIC_RESULT.md
 docs/LAE_LIDAR_AGENT_PROTOCOL.md
+docs/PAPER_BLUEPRINT.md
 docs/ALGORITHM_CHANGES_AND_INNOVATIONS.md
 docs/EXPERIENCE_AND_TROUBLESHOOTING.md
 docs/TRANSFER_GUIDE.md

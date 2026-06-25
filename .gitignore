@@ -20,6 +20,7 @@ checks/
 out/
 tmp/
 *.log
+results/research_evidence/latest_validation_report.json
 
 # Native binaries generated after merge/build
 *.exe

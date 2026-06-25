@@ -119,6 +119,7 @@ These are input benchmarks, not standard routed GDS files.
 | `docs/METHODOLOGY.md` | Methodology for building/converting a high-quality router. |
 | `docs/SCIENTIFIC_RESULT.md` | Paper-style research-result statement with claim-to-evidence mapping. |
 | `docs/LAE_LIDAR_AGENT_PROTOCOL.md` | Project-specific agent protocol for hypothesis-driven router improvement. |
+| `docs/PAPER_BLUEPRINT.md` | Paper-ready outline, tables, figures, threats to validity, and artifact checklist. |
 | `docs/ALGORITHM_CHANGES_AND_INNOVATIONS.md` | Algorithmic changes, engineering innovations, and what was not hardcoded. |
 | `docs/EXPERIENCE_AND_TROUBLESHOOTING.md` | Lessons learned and debugging playbook. |
 | `docs/ENVIRONMENT.md` | C++ and Python environment dependencies. |
@@ -131,3 +132,4 @@ These are input benchmarks, not standard routed GDS files.
 |---|---|
 | `tools/merge_into_picdb.ps1` | Copies packaged code into a PIC-DB source tree. |
 | `tools/run_all_cases.ps1` | Runs the default 9-case regression in a PIC-DB tree. |
+| `tools/validate_research_artifact.py` | Validates JSON, claim ledgers, GDS existence, GDS SHA256, H015 totals, standard-GDS comparison rows, and portable paths. |
