@@ -95,7 +95,7 @@ Validation command:
 python tools\validate_research_artifact.py --root .
 ```
 
-Regenerate all paper tables and figure-data CSV files:
+Regenerate all paper tables, figure-data CSV files, and SVG figures:
 
 ```powershell
 python tools\generate_paper_assets.py --root .
@@ -238,14 +238,15 @@ accepted by evidence, not by plausibility.
 Recommended paper figures:
 
 ```text
-Figure 1: LAE-LiDAR agent loop and evidence gates.
-Figure 2: C++ router architecture from PIC-DB view to GDS render.
-Figure 3: MRR8/MRR16 marker progression H010 -> H013 -> H015.
-Figure 4: Standard-GDS XOR hotspots for the three standard cases.
-Figure 5: Route-core vs full-flow timing breakdown.
+Figure 1: MRR8/MRR16 marker progression H010 -> H013 -> H015.
+Figure 2: Route-core vs full-flow timing breakdown.
+Figure 3: Standard-GDS XOR summary for the three standard cases.
+Figure 4: LAE-LiDAR agent loop and evidence gates.
+Optional Figure 5: C++ router architecture from PIC-DB view to GDS render.
 ```
 
-The repository ships plotting-tool-agnostic figure-data CSV files under:
+The repository ships plotting-tool-agnostic figure-data CSV files and generated
+SVG figures under:
 
 ```text
 results/research_evidence/paper_assets/

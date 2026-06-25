@@ -25,5 +25,9 @@ table4_runtime_evidence.csv/.md
 figure_data_mrr_marker_progression.csv
 figure_data_runtime_breakdown.csv
 figure_data_standard_xor.csv
+figure1_mrr_marker_progression.svg
+figure2_runtime_breakdown.svg
+figure3_standard_xor.svg
+figure4_agent_protocol.svg
 asset_manifest.json
 ```

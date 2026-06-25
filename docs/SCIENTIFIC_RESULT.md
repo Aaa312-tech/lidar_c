@@ -41,7 +41,7 @@ Repository-internal verification command:
 python tools\validate_research_artifact.py --root .
 ```
 
-Paper-ready generated tables and figure data:
+Paper-ready generated tables, figure data, and SVG figures:
 
 ```text
 results/research_evidence/paper_assets/

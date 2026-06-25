@@ -261,6 +261,7 @@ def validate_paper_assets(root: Path, errors: list[str], report: dict[str, objec
         "mrr_figure_rows": 6,
         "runtime_figure_rows": 9,
         "standard_xor_rows": 3,
+        "svg_figures": 4,
     }
     for key, expected in expected_summary.items():
         require(summary.get(key) == expected, f"paper_asset_summary_mismatch: {key}", errors)
@@ -280,6 +281,19 @@ def validate_paper_assets(root: Path, errors: list[str], report: dict[str, objec
         if path.exists():
             rows = read_csv(path)
             require(len(rows) == expected_rows, f"paper_asset_table_row_mismatch: {filename}", errors)
+
+    svg_checks = [
+        "figure1_mrr_marker_progression.svg",
+        "figure2_runtime_breakdown.svg",
+        "figure3_standard_xor.svg",
+        "figure4_agent_protocol.svg",
+    ]
+    for filename in svg_checks:
+        path = asset_dir / filename
+        require(path.exists(), f"paper_asset_svg_missing: {filename}", errors)
+        if path.exists():
+            text = path.read_text(encoding="utf-8", errors="replace").lstrip()
+            require(text.startswith("<svg "), f"paper_asset_svg_invalid: {filename}", errors)
 
     report["paper_assets_checked"] = len(assets) + 1
 

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360">
+<rect width="100%" height="100%" fill="#ffffff" />
+<text x="24.0" y="34.0" font-family="Arial, sans-serif" font-size="20" font-weight="700" text-anchor="start" fill="#1f2937">LAE-LiDAR agentic optimization loop</text>
+<text x="24.0" y="56.0" font-family="Arial, sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#1f2937">Each change is a falsifiable routing hypothesis tied to concrete GDS and runtime evidence.</text>
+<rect x="34" y="142" width="110" height="58" rx="6" fill="#f8fafc" stroke="#475569" />
+<text x="89.0" y="177.0" font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2937">Hypothesis</text>
+<line x1="144" y1="171.0" x2="152" y2="171.0" stroke="#64748b" stroke-width="2" />
+<polygon points="152,166.0 160,171.0 152,176.0" fill="#64748b" />
+<rect x="160" y="142" width="110" height="58" rx="6" fill="#f8fafc" stroke="#475569" />
+<text x="215.0" y="168.0" font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2937">Scoped edit</text>
+<text x="215.0" y="185.0" font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2937"></text>
+<line x1="270" y1="171.0" x2="278" y2="171.0" stroke="#64748b" stroke-width="2" />
+<polygon points="278,166.0 286,171.0 278,176.0" fill="#64748b" />
+<rect x="286" y="142" width="110" height="58" rx="6" fill="#f8fafc" stroke="#475569" />
+<text x="341.0" y="168.0" font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2937">Tiered run</text>
+<text x="341.0" y="185.0" font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2937"></text>
+<line x1="396" y1="171.0" x2="404" y2="171.0" stroke="#64748b" stroke-width="2" />
+<polygon points="404,166.0 412,171.0 404,176.0" fill="#64748b" />
+<rect x="412" y="142" width="110" height="58" rx="6" fill="#f8fafc" stroke="#475569" />
+<text x="467.0" y="168.0" font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2937">DRC +</text>
+<text x="467.0" y="185.0" font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2937">GDS XOR</text>
+<line x1="522" y1="171.0" x2="530" y2="171.0" stroke="#64748b" stroke-width="2" />
+<polygon points="530,166.0 538,171.0 530,176.0" fill="#64748b" />
+<rect x="538" y="142" width="110" height="58" rx="6" fill="#f8fafc" stroke="#475569" />
+<text x="593.0" y="168.0" font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2937">A/B timing</text>
+<text x="593.0" y="185.0" font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2937"></text>
+<line x1="648" y1="171.0" x2="656" y2="171.0" stroke="#64748b" stroke-width="2" />
+<polygon points="656,166.0 664,171.0 656,176.0" fill="#64748b" />
+<rect x="664" y="142" width="110" height="58" rx="6" fill="#f8fafc" stroke="#475569" />
+<text x="719.0" y="168.0" font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2937">Accept /</text>
+<text x="719.0" y="185.0" font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2937">reject</text>
+<line x1="774" y1="171.0" x2="782" y2="171.0" stroke="#64748b" stroke-width="2" />
+<polygon points="782,166.0 790,171.0 782,176.0" fill="#64748b" />
+<rect x="790" y="142" width="110" height="58" rx="6" fill="#f8fafc" stroke="#475569" />
+<text x="845.0" y="168.0" font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2937">Evidence ledger</text>
+<text x="845.0" y="185.0" font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2937"></text>
+<text x="34.0" y="250.0" font-family="Arial, sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#1f2937">Hard gates: build, DRC, protected GDS, standard-GDS comparison, timing evidence</text>
+<text x="34.0" y="276.0" font-family="Arial, sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#1f2937">Disallowed: standard-GDS replay, case-name route patches, net-id answer leakage</text>
+</svg>

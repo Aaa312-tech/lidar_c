@@ -207,7 +207,7 @@ cd $LidarCRoot
 python tools\validate_research_artifact.py --root .
 ```
 
-Regenerate paper tables and figure-data CSV files:
+Regenerate paper tables, figure-data CSV files, and SVG figures:
 
 ```powershell
 python tools\generate_paper_assets.py --root .
@@ -269,7 +269,7 @@ docs/PERFORMANCE_AND_QUALITY_EVIDENCE.md
 docs/RESEARCH_ARTIFACT.md
 ```
 
-Paper-ready generated tables and figure data:
+Paper-ready generated tables, figure data, and SVG figures:
 
 ```text
 results/research_evidence/paper_assets/
