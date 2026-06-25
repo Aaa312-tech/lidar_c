@@ -1989,7 +1989,7 @@ bool repairOneFanoutAccessOverlap(PostRoutePath& throughPath,
     return false;
   }
 
-  for (std::size_t segIndex = 1; segIndex + 1 < throughPoints.size(); ++segIndex) {
+  for (std::size_t segIndex = 0; segIndex + 1 < throughPoints.size(); ++segIndex) {
     const auto& segStart = throughPoints[segIndex];
     const auto& segEnd = throughPoints[segIndex + 1];
     if (std::abs(segStart[1] - segEnd[1]) > eps
@@ -2029,6 +2029,23 @@ bool repairOneFanoutAccessOverlap(PostRoutePath& throughPath,
                         std::max(segStart[0], segEnd[0]) + crossingClearance);
     detourX = snapGdsFactoryGrid(detourX);
 
+    std::optional<std::array<double, 2>> startTangentPoint;
+    if (segIndex == 0) {
+      if (angleDelta(throughPath.startPort.orientation, 0.0) > 1.0
+          || segEnd[0] <= segStart[0] + eps) {
+        continue;
+      }
+      const double overlapStart =
+          std::max(std::min(segStart[0], segEnd[0]),
+                   std::min(accessStart[0], accessEnd[0]));
+      const double tangentX =
+          snapGdsFactoryGrid(segStart[0] + crossingClearance);
+      if (tangentX >= overlapStart - config.gridResolution) {
+        continue;
+      }
+      startTangentPoint = std::array<double, 2>{tangentX, segStart[1]};
+    }
+
     std::vector<std::array<double, 2>> repaired;
     auto append = [&](const std::array<double, 2>& point) {
       if (repaired.empty() || !samePoint(repaired.back(), point)) {
@@ -2040,7 +2057,12 @@ bool repairOneFanoutAccessOverlap(PostRoutePath& throughPath,
     for (std::size_t i = 0; i < segIndex && i < throughPath.points.size(); ++i) {
       append(throughPath.points[i]);
     }
-    append({segStart[0], detourY});
+    if (startTangentPoint.has_value()) {
+      append(startTangentPoint.value());
+    }
+    const double detourEntryX =
+        startTangentPoint.has_value() ? startTangentPoint->at(0) : segStart[0];
+    append({detourEntryX, detourY});
     append({detourX, detourY});
     append({detourX, turnPoint[1]});
     append(turnPoint);
@@ -2048,7 +2070,12 @@ bool repairOneFanoutAccessOverlap(PostRoutePath& throughPath,
       append(throughPath.points[i]);
     }
 
-    throughPath.points = std::move(repaired);
+    PostRoutePath candidate = throughPath;
+    candidate.points = std::move(repaired);
+    if (!validatePostRoutePathAccess(std::string{}, 0, candidate).empty()) {
+      continue;
+    }
+    throughPath = std::move(candidate);
     return true;
   }
 
@@ -3088,9 +3115,9 @@ PythonPostProcessRoutes buildPythonPostProcessRoutes(
   }
 
   auto crossingNearExisting = [&](const std::array<double, 2>& point) {
-    constexpr double minCrossingSeparation = 4.0;
+    constexpr double minCrossingSeparation = 8.0;
     for (const auto& crossing : result.crossings) {
-      if (pointDistance(crossing.center, point) < minCrossingSeparation) {
+      if (pointDistance(crossing.center, point) <= minCrossingSeparation + 1e-9) {
         return true;
       }
     }

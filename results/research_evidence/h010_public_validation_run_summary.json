@@ -28,12 +28,12 @@
     "timing_lidar_full_flow_s": "13.670229",
     "gds_exists": true,
     "gds_bytes": 26844,
-    "input_yml": "D:/xprogram/lidar_c/code/benchmarks/picroute/toy_example/toy_example.gp.yml",
-    "gds": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/toy_example_gp_cpp.gds",
-    "flow_dir": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/toy_example_gp_cpp_picdb_flow",
-    "db_drc_summary": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/toy_example_gp_cpp_picdb_flow/cpp/db_drc_summary.txt",
-    "stdout": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/toy_example_gp_cpp.stdout.txt",
-    "stderr": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/toy_example_gp_cpp.stderr.txt"
+    "input_yml": "<LIDAR_C_ROOT>/code/benchmarks/picroute/toy_example/toy_example.gp.yml",
+    "gds": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/toy_example_gp_cpp.gds",
+    "flow_dir": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/toy_example_gp_cpp_picdb_flow",
+    "db_drc_summary": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/toy_example_gp_cpp_picdb_flow/cpp/db_drc_summary.txt",
+    "stdout": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/toy_example_gp_cpp.stdout.txt",
+    "stderr": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/toy_example_gp_cpp.stderr.txt"
   },
   {
     "case": "mrr_weight_bank_4x4",
@@ -64,12 +64,12 @@
     "timing_lidar_full_flow_s": "15.445478",
     "gds_exists": true,
     "gds_bytes": 110828,
-    "input_yml": "D:/xprogram/lidar_c/code/benchmarks/picroute/mrr_weight_bank_4x4/mrr_weight_bank_4x4.yml",
-    "gds": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_4x4_cpp.gds",
-    "flow_dir": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_4x4_cpp_picdb_flow",
-    "db_drc_summary": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_4x4_cpp_picdb_flow/cpp/db_drc_summary.txt",
-    "stdout": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_4x4_cpp.stdout.txt",
-    "stderr": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_4x4_cpp.stderr.txt"
+    "input_yml": "<LIDAR_C_ROOT>/code/benchmarks/picroute/mrr_weight_bank_4x4/mrr_weight_bank_4x4.yml",
+    "gds": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_4x4_cpp.gds",
+    "flow_dir": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_4x4_cpp_picdb_flow",
+    "db_drc_summary": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_4x4_cpp_picdb_flow/cpp/db_drc_summary.txt",
+    "stdout": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_4x4_cpp.stdout.txt",
+    "stderr": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_4x4_cpp.stderr.txt"
   },
   {
     "case": "mrr_weight_bank_8x8",
@@ -100,12 +100,12 @@
     "timing_lidar_full_flow_s": "25.248483",
     "gds_exists": true,
     "gds_bytes": 189516,
-    "input_yml": "D:/xprogram/lidar_c/code/benchmarks/picroute/mrr_weight_bank_8x8/mrr_weight_bank_8x8.yml",
-    "gds": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_8x8_cpp.gds",
-    "flow_dir": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_8x8_cpp_picdb_flow",
-    "db_drc_summary": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_8x8_cpp_picdb_flow/cpp/db_drc_summary.txt",
-    "stdout": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_8x8_cpp.stdout.txt",
-    "stderr": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_8x8_cpp.stderr.txt"
+    "input_yml": "<LIDAR_C_ROOT>/code/benchmarks/picroute/mrr_weight_bank_8x8/mrr_weight_bank_8x8.yml",
+    "gds": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_8x8_cpp.gds",
+    "flow_dir": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_8x8_cpp_picdb_flow",
+    "db_drc_summary": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_8x8_cpp_picdb_flow/cpp/db_drc_summary.txt",
+    "stdout": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_8x8_cpp.stdout.txt",
+    "stderr": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_8x8_cpp.stderr.txt"
   },
   {
     "case": "mrr_weight_bank_16x16",
@@ -136,12 +136,12 @@
     "timing_lidar_full_flow_s": "83.480800",
     "gds_exists": true,
     "gds_bytes": 454244,
-    "input_yml": "D:/xprogram/lidar_c/code/benchmarks/picroute/mrr_weight_bank_16x16/mrr_weight_bank_16x16.yml",
-    "gds": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_16x16_cpp.gds",
-    "flow_dir": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_16x16_cpp_picdb_flow",
-    "db_drc_summary": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_16x16_cpp_picdb_flow/cpp/db_drc_summary.txt",
-    "stdout": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_16x16_cpp.stdout.txt",
-    "stderr": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_16x16_cpp.stderr.txt"
+    "input_yml": "<LIDAR_C_ROOT>/code/benchmarks/picroute/mrr_weight_bank_16x16/mrr_weight_bank_16x16.yml",
+    "gds": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_16x16_cpp.gds",
+    "flow_dir": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_16x16_cpp_picdb_flow",
+    "db_drc_summary": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_16x16_cpp_picdb_flow/cpp/db_drc_summary.txt",
+    "stdout": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_16x16_cpp.stdout.txt",
+    "stderr": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/mrr_weight_bank_16x16_cpp.stderr.txt"
   },
   {
     "case": "clements_8x8",
@@ -172,12 +172,12 @@
     "timing_lidar_full_flow_s": "26.357202",
     "gds_exists": true,
     "gds_bytes": 175952,
-    "input_yml": "D:/xprogram/lidar_c/code/benchmarks/picroute/clements_8x8/clements_8x8.yml",
-    "gds": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/clements_8x8_cpp.gds",
-    "flow_dir": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/clements_8x8_cpp_picdb_flow",
-    "db_drc_summary": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/clements_8x8_cpp_picdb_flow/cpp/db_drc_summary.txt",
-    "stdout": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/clements_8x8_cpp.stdout.txt",
-    "stderr": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/clements_8x8_cpp.stderr.txt"
+    "input_yml": "<LIDAR_C_ROOT>/code/benchmarks/picroute/clements_8x8/clements_8x8.yml",
+    "gds": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/clements_8x8_cpp.gds",
+    "flow_dir": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/clements_8x8_cpp_picdb_flow",
+    "db_drc_summary": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/clements_8x8_cpp_picdb_flow/cpp/db_drc_summary.txt",
+    "stdout": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/clements_8x8_cpp.stdout.txt",
+    "stderr": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/clements_8x8_cpp.stderr.txt"
   },
   {
     "case": "clements_16x16",
@@ -208,12 +208,12 @@
     "timing_lidar_full_flow_s": "60.627538",
     "gds_exists": true,
     "gds_bytes": 528562,
-    "input_yml": "D:/xprogram/lidar_c/code/benchmarks/picroute/clements_16x16/clements_16x16.yml",
-    "gds": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/clements_16x16_cpp.gds",
-    "flow_dir": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/clements_16x16_cpp_picdb_flow",
-    "db_drc_summary": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/clements_16x16_cpp_picdb_flow/cpp/db_drc_summary.txt",
-    "stdout": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/clements_16x16_cpp.stdout.txt",
-    "stderr": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/clements_16x16_cpp.stderr.txt"
+    "input_yml": "<LIDAR_C_ROOT>/code/benchmarks/picroute/clements_16x16/clements_16x16.yml",
+    "gds": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/clements_16x16_cpp.gds",
+    "flow_dir": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/clements_16x16_cpp_picdb_flow",
+    "db_drc_summary": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/clements_16x16_cpp_picdb_flow/cpp/db_drc_summary.txt",
+    "stdout": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/clements_16x16_cpp.stdout.txt",
+    "stderr": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/clements_16x16_cpp.stderr.txt"
   },
   {
     "case": "multiportmmi_8x8",
@@ -244,12 +244,12 @@
     "timing_lidar_full_flow_s": "44.767949",
     "gds_exists": true,
     "gds_bytes": 337692,
-    "input_yml": "D:/xprogram/lidar_c/code/benchmarks/picroute/multiportmmi_8x8/multiportmmi_8x8.yml",
-    "gds": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_8x8_cpp.gds",
-    "flow_dir": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_8x8_cpp_picdb_flow",
-    "db_drc_summary": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_8x8_cpp_picdb_flow/cpp/db_drc_summary.txt",
-    "stdout": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_8x8_cpp.stdout.txt",
-    "stderr": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_8x8_cpp.stderr.txt"
+    "input_yml": "<LIDAR_C_ROOT>/code/benchmarks/picroute/multiportmmi_8x8/multiportmmi_8x8.yml",
+    "gds": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_8x8_cpp.gds",
+    "flow_dir": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_8x8_cpp_picdb_flow",
+    "db_drc_summary": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_8x8_cpp_picdb_flow/cpp/db_drc_summary.txt",
+    "stdout": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_8x8_cpp.stdout.txt",
+    "stderr": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_8x8_cpp.stderr.txt"
   },
   {
     "case": "multiportmmi_16x16",
@@ -280,12 +280,12 @@
     "timing_lidar_full_flow_s": "132.095731",
     "gds_exists": true,
     "gds_bytes": 592780,
-    "input_yml": "D:/xprogram/lidar_c/code/benchmarks/picroute/multiportmmi_16x16/multiportmmi_16x16.yml",
-    "gds": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_16x16_cpp.gds",
-    "flow_dir": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_16x16_cpp_picdb_flow",
-    "db_drc_summary": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_16x16_cpp_picdb_flow/cpp/db_drc_summary.txt",
-    "stdout": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_16x16_cpp.stdout.txt",
-    "stderr": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_16x16_cpp.stderr.txt"
+    "input_yml": "<LIDAR_C_ROOT>/code/benchmarks/picroute/multiportmmi_16x16/multiportmmi_16x16.yml",
+    "gds": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_16x16_cpp.gds",
+    "flow_dir": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_16x16_cpp_picdb_flow",
+    "db_drc_summary": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_16x16_cpp_picdb_flow/cpp/db_drc_summary.txt",
+    "stdout": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_16x16_cpp.stdout.txt",
+    "stderr": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_16x16_cpp.stderr.txt"
   },
   {
     "case": "multiportmmi_32x32",
@@ -316,11 +316,11 @@
     "timing_lidar_full_flow_s": "591.600722",
     "gds_exists": true,
     "gds_bytes": 1108964,
-    "input_yml": "D:/xprogram/lidar_c/code/benchmarks/picroute/multiportmmi_32x32/multiportmmi_32x32.yml",
-    "gds": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_32x32_cpp.gds",
-    "flow_dir": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_32x32_cpp_picdb_flow",
-    "db_drc_summary": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_32x32_cpp_picdb_flow/cpp/db_drc_summary.txt",
-    "stdout": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_32x32_cpp.stdout.txt",
-    "stderr": "D:/xprogram/PIC-DB-main/PIC-DB-main/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_32x32_cpp.stderr.txt"
+    "input_yml": "<LIDAR_C_ROOT>/code/benchmarks/picroute/multiportmmi_32x32/multiportmmi_32x32.yml",
+    "gds": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_32x32_cpp.gds",
+    "flow_dir": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_32x32_cpp_picdb_flow",
+    "db_drc_summary": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_32x32_cpp_picdb_flow/cpp/db_drc_summary.txt",
+    "stdout": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_32x32_cpp.stdout.txt",
+    "stderr": "<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/multiportmmi_32x32_cpp.stderr.txt"
   }
 ]

@@ -12,21 +12,22 @@ the router during generation.
 
 ## Current Public Validation
 
-The latest public validation run was produced from package commit:
+The latest packaged validation is the H013 reference run. It adds MRR
+geometry-quality cleanup on top of the H010 speed stack.
 
 ```text
-28e3a70760c62afb5e8d904185180b19639c4cbd
+results/research_evidence/h013_public_validation_summary.json
 ```
 
 Primary machine-readable evidence:
 
 ```text
-results/research_evidence/h010_public_validation_summary.json
-results/research_evidence/h010_public_validation_evidence_ledger.csv
-results/research_evidence/h010_public_validation_evidence_ledger.json
-results/research_evidence/h010_public_validation_run_summary.csv
-results/research_evidence/h010_reference_vs_public_run_gds_pair_summary.csv
-results/research_evidence/h010_standard_vs_public_run_gds_pair_summary.csv
+results/research_evidence/h013_public_validation_summary.json
+results/research_evidence/h013_public_validation_evidence_ledger.csv
+results/research_evidence/h013_public_validation_evidence_ledger.json
+results/research_evidence/h013_public_validation_run_summary.csv
+results/research_evidence/h013_vs_h010_reference_gds_pair_summary.csv
+results/research_evidence/h013_standard_gds_pair_summary.csv
 ```
 
 The concrete shipped GDS files used as package references are:
@@ -43,10 +44,11 @@ results/reference_run/multiportmmi_16x16_cpp.gds
 results/reference_run/multiportmmi_32x32_cpp.gds
 ```
 
-The reproduced run writes the same GDS names to:
+The current reproduction run should write the same GDS names to a fresh checks
+directory, for example:
 
 ```text
-<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h010_full/
+<PICDB_ROOT>/build_native_release/checks/lidar_c_public_h013_full/
 ```
 
 The evidence ledger records both the shipped GDS hash and the reproduced-run
@@ -61,24 +63,24 @@ Full public run:
 | benchmark cases | 9 |
 | completed cases | 9 |
 | DRC-clean cases | 6 |
-| total DRC markers | 119 |
-| route-geometry markers | 117 |
-| GDS exact matches vs package reference | 9 / 9 |
-| total GDS XOR vs package reference | 0.0 um^2 |
+| total DRC markers | 99 |
+| route-geometry markers | 98 |
+| marker delta vs H010 | -20 |
+| GDS exact matches vs H010 reference | 7 / 9 |
 
 Per-case quality and speed:
 
 | case | clean | markers | route-core s | full-flow s | GDS exact vs reference |
 |---|---:|---:|---:|---:|---:|
-| toy_example_gp | 0 | 1 | 0.099301 | 13.670229 | yes |
-| mrr_weight_bank_4x4 | 1 | 0 | 1.002947 | 15.445478 | yes |
-| mrr_weight_bank_8x8 | 0 | 8 | 1.853486 | 25.248483 | yes |
-| mrr_weight_bank_16x16 | 0 | 110 | 25.663113 | 83.480800 | yes |
-| clements_8x8 | 1 | 0 | 0.928382 | 26.357202 | yes |
-| clements_16x16 | 1 | 0 | 9.878940 | 60.627538 | yes |
-| multiportmmi_8x8 | 1 | 0 | 17.782196 | 44.767949 | yes |
-| multiportmmi_16x16 | 1 | 0 | 67.921257 | 132.095731 | yes |
-| multiportmmi_32x32 | 1 | 0 | 398.729173 | 591.600722 | yes |
+| toy_example_gp | 0 | 1 | 0.132931 | 17.870723 | yes |
+| mrr_weight_bank_4x4 | 1 | 0 | 1.714919 | 25.807199 | yes |
+| mrr_weight_bank_8x8 | 0 | 6 | 3.469923 | 40.464615 | changed vs H010 |
+| mrr_weight_bank_16x16 | 0 | 92 | 37.130614 | 138.668979 | changed vs H010 |
+| clements_8x8 | 1 | 0 | 1.429491 | 39.125370 | yes |
+| clements_16x16 | 1 | 0 | 16.064827 | 101.493727 | yes |
+| multiportmmi_8x8 | 1 | 0 | 29.019144 | 75.567298 | yes |
+| multiportmmi_16x16 | 1 | 0 | 109.331169 | 209.487125 | yes |
+| multiportmmi_32x32 | 1 | 0 | 631.769004 | 947.124771 | yes |
 
 The non-clean cases are not hidden:
 
@@ -87,11 +89,10 @@ toy_example_gp:
   known component-geometry marker in the input-sized smoke case
 
 mrr_weight_bank_8x8:
-  8 route-geometry markers
+  6 route-geometry markers
 
 mrr_weight_bank_16x16:
-  1 component-geometry marker
-  109 route-geometry markers
+  92 route-geometry markers
 ```
 
 ## Standard-GDS Agreement
@@ -117,14 +118,14 @@ near-zero for the two MultiportMMI standards.
 
 ## Runtime Results
 
-The current public validation run reports:
+The H013 public validation run reports:
 
 | metric | value |
 |---|---:|
-| total route-core time | 523.858795 s |
-| total full-flow time | 993.294132 s |
-| average route-core time | 58.206533 s |
-| average full-flow time | 110.366015 s |
+| total route-core time | 830.062022 s |
+| total full-flow time | 1595.609807 s |
+| average route-core time | 92.229114 s |
+| average full-flow time | 177.289979 s |
 
 The strongest repeated speed claims are the paired A/B trials from the research
 workflow:
@@ -160,6 +161,13 @@ H005: reserve A* node/index/neighbor storage from a conservative route bound
 H007: replace per-lookup string node keys with structured integer grid keys
 H008: replace HeapDict ordered entry lookup with unordered membership lookup
 H010: cache fixed A* step costs and reuse step-type predicates in the hot loop
+```
+
+It also contains two accepted geometry-quality fixes:
+
+```text
+H011: reject supplemental crossing cells closer than one crossing-cell width
+H013: allow first access-segment detours for shared MRR fanout lanes
 ```
 
 These changes are intentionally limited:
@@ -215,21 +223,21 @@ After merging the package into a full PIC-DB checkout and building
   -PythonExe "<GDS_RENDER_PYTHON>" `
   -DriverPython "<GDS_RENDER_PYTHON>" `
   -BenchmarkRoot "<LIDAR_C_ROOT>\code\benchmarks\picroute" `
-  -OutputDir build_native_release\checks\lidar_c_public_h010_full `
-  -Prefix lidar_c_public_h010_full
+  -OutputDir build_native_release\checks\lidar_c_public_h013_full `
+  -Prefix lidar_c_public_h013_full
 ```
 
 Then compare the reproduced GDS files against the package references:
 
 ```text
-results/research_evidence/h010_reference_vs_public_run_gds_pair_summary.csv
+results/reference_run/*.gds
 ```
 
 Expected result:
 
 ```text
-exact_file_match: 9 / 9
-total XOR: 0.0 um^2
+exact_file_match vs current package reference: 9 / 9
+total XOR vs current package reference: 0.0 um^2
 ```
 
 ## Limitations
@@ -239,7 +247,7 @@ optimization. It is not yet a complete routing-policy breakthrough for every
 family. The remaining technical targets are:
 
 ```text
-MRR 8x8 and 16x16 route-geometry marker reduction
+remaining MRR 8x8 and 16x16 route-geometry marker reduction
 MultiportMMI crossing residual reduction without standard-GDS leakage
 more repeated full-suite timing trials
 render-stage acceleration beyond the native route core

@@ -33,7 +33,15 @@ results/reference_run/reference_run.csv
 results/reference_run/reference_run.json
 ```
 
-The H010 public validation evidence ledger is in:
+The H013 public validation evidence ledger is in:
+
+```text
+results/research_evidence/h013_public_validation_summary.json
+results/research_evidence/h013_public_validation_evidence_ledger.csv
+results/research_evidence/h013_public_validation_evidence_ledger.json
+```
+
+The earlier H010 public validation evidence ledger is retained in:
 
 ```text
 results/research_evidence/h010_public_validation_summary.json
@@ -91,19 +99,22 @@ run. `toy_example_gp` has a known input component overlap marker. The larger MRR
 cases still retain route-geometry markers and are documented as remaining work
 rather than hidden as successes.
 
-H010 public validation summary:
+H013 public validation summary:
 
 ```text
 cases: 9
 ok_cases: 9
 DRC-clean cases: 6
-total markers: 119
-route-geometry markers: 117
-exact GDS vs package reference: 9 / 9
-total reference-vs-reproduced XOR: 0.0 um^2
-total route-core time: 523.858795 s
-total full-flow time: 993.294132 s
+total markers: 99
+route-geometry markers: 98
+MRR marker delta vs H010 public validation: -20
+changed GDS vs H010 reference: mrr_weight_bank_8x8, mrr_weight_bank_16x16
+standard-GDS metrics unchanged for clements_8x8 and the two MultiportMMI cases
 ```
+
+The H013 reference GDS files in `results/reference_run/` are now the packaged
+reference outputs. Compared with the H010 reference, 7 / 9 GDS files remain
+byte-identical; only `mrr_weight_bank_8x8` and `mrr_weight_bank_16x16` change.
 
 ## Validated Speed Claim
 
@@ -114,6 +125,24 @@ H005: A* allocation reserve
 H007: structured A* node keys
 H008: unordered HeapDict entry lookup
 H010: cached A* step costs and reused step-type predicates
+```
+
+H011 and H013 are quality fixes, not speed optimizations:
+
+```text
+H011: enforce crossing-cell center separation for supplemental crossings
+H013: allow first fanout-access segment detours when another access lane reuses it
+```
+
+Single-pair minimum A/B timing for H013 showed the expected quality improvement
+and a small runtime cost on the three sampled cases:
+
+```text
+cases: mrr_weight_bank_8x8, mrr_weight_bank_16x16, multiportmmi_16x16
+repetitions: 1
+average route-core delta: +4.781203%
+average full-flow delta: +4.347481%
+interpretation: quality improvement accepted; more repetitions required for a speed claim
 ```
 
 In the research validation run, the H005+H007+H008 stack was compared against

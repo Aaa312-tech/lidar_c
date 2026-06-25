@@ -20,6 +20,11 @@ allocation reservation, structured grid-node keys, unordered heap-entry lookup,
 and cached fixed step costs. These patches were accepted only after exact-GDS
 regression checks; they do not use standard GDS files as generation inputs.
 
+The latest archived results also include two geometry-quality fixes:
+crossing-cell separation for supplemental crossings and first-access fanout
+detours for shared MRR access lanes. These reduce MRR DRC markers without
+changing the Clements or MultiportMMI reference GDS outputs.
+
 Archived reference results are included under:
 
 ```text
@@ -39,6 +44,17 @@ The full default 9-case regression summary is:
 ```text
 results/reference_run/reference_run.csv
 results/reference_run/reference_run.json
+```
+
+Current full-regression headline:
+
+```text
+cases: 9
+completed: 9
+DRC-clean cases: 6
+total DRC markers: 99
+route-geometry markers: 98
+MRR marker delta vs H010 validation: -20
 ```
 
 Standard-GDS comparison reports are:
@@ -238,7 +254,8 @@ docs/RESEARCH_ARTIFACT.md
    almost identical to the standards, but retain tiny XOR around crossing
    post-processing geometry.
 3. In the archived full regression, `mrr_weight_bank_8x8` and
-   `mrr_weight_bank_16x16` still have DRC markers and need more MRR-specific
+   `mrr_weight_bank_16x16` still have DRC markers, reduced to 6 and 92
+   respectively in the H013 reference run. They need more MRR-specific
    crossing/short-connector cleanup.
 4. End-to-end runtime is still affected by Python YAML conversion and
    gdsfactory/KLayout GDS rendering, even though the C++ route core is much

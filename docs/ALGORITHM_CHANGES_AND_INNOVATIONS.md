@@ -227,6 +227,39 @@ post path export
 把 MMI 剩余差异定位到 crossing geometry 周边，而不是误判为 A* 大范围错误
 ```
 
+### 3.7.1 Crossing Separation And First-Access Detours
+
+H011/H013 在 post-process 层增加了两个质量修复：
+
+```text
+H011: supplemental crossing 插入时，要求新 crossing center 与既有 crossing center
+      至少相隔一个 crossing cell 的物理跨度，避免 crossing cell envelope overlap。
+
+H013: fanout access overlap 修复不再只处理中间水平段，也允许处理起始端口后的
+      第一段水平 access；修复时保留端口初始切向，再绕开被其它 access lane 占用的
+      共享通道。
+```
+
+这两个修复不读取标准 GDS，也不按 case name、net name 或固定坐标触发。触发条件来自
+当前 route path 的几何关系：
+
+```text
+crossing center distance
+access segment horizontal overlap
+port orientation
+available tangent distance before overlap
+post-route access orientation validation
+```
+
+验证结果：
+
+```text
+MRR 8x8 markers: 8 -> 6
+MRR 16x16 markers: 110 -> 92
+Clements and MultiportMMI reference GDS: unchanged
+standard-GDS comparison for the three provided standard files: unchanged
+```
+
 ### 3.8 Version-Locked GDS Rendering
 
 C++ 版本没有直接手写所有 gdsfactory photonic cells，而是继续通过 gdsfactory/kfactory 渲染最终 GDS。

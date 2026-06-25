@@ -16,9 +16,10 @@ portable relative paths.
 standard GDS files. The standard files themselves are not included; report paths
 use the placeholder `standard_gds/`.
 
-`research_evidence` contains the H010 public validation ledger. It ties every
-case to concrete benchmark YAML, GDS file names, SHA256 hashes, DRC metrics,
-timing metrics, and GDS XOR comparison reports. Paths use placeholders such as
+`research_evidence` contains the current H013 public validation ledger plus
+the retained H010 speed-stack validation evidence. The ledgers tie every case
+to concrete benchmark YAML, GDS file names, SHA256 hashes, DRC metrics, timing
+metrics, and GDS XOR comparison reports. Paths use placeholders such as
 `<PICDB_ROOT>` and `<STANDARD_GDS_DIR>` so the evidence can be read after
 moving the package.
 
