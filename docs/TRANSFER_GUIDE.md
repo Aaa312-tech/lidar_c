@@ -166,16 +166,6 @@ clements_8x8 has clean=1
 clements_8x8 XOR is 0 when using the matching standard GDS and locked render environment
 ```
 
-Also validate the packaged research artifact from the `lidar_c` root:
-
-```powershell
-python tools\validate_research_artifact.py --root .
-```
-
-This checks repository-internal JSON, claim ledgers, generated GDS file
-existence, GDS SHA256 values, H015 summary totals, standard-GDS comparison
-rows, and portable-path hygiene.
-
 ## 10. Common Transfer Failures
 
 ```text

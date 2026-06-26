@@ -89,26 +89,6 @@ These are input benchmarks, not standard routed GDS files.
 | `results/reference_gds_compare/gds_pair_summary.csv` | Standard/Python/C++ GDS pair comparisons. |
 | `results/reference_gds_compare/gds_layer_xor.csv` | Layer-by-layer XOR. |
 | `results/reference_gds_compare/gds_xor_hotspots.csv` | XOR hotspot report. |
-| `results/research_evidence/README.md` | Explains the portable H015 evidence tables and retained H013/H010 evidence. |
-| `results/research_evidence/h015_public_validation_summary.json` | Current top-level public validation metrics. |
-| `results/research_evidence/h015_public_validation_evidence_ledger.csv` | Current per-case GDS, DRC, timing, hash, and XOR evidence ledger. |
-| `results/research_evidence/h015_effect_evidence_matrix.csv` | Current per-case quality, runtime, GDS hash, H013 comparison, standard-GDS comparison, and A/B timing matrix. |
-| `results/research_evidence/research_claims_ledger.csv` | Research claim ledger mapping publishable claims to concrete evidence files and GDS artifacts. |
-| `results/research_evidence/artifact_scorecard.csv` | Requirement-by-requirement scorecard for quality, speed, GDS evidence, agent protocol, methodology, paper assets, validation, and limitations. |
-| `results/research_evidence/h015_vs_h013_reference_gds_pair_summary.csv` | Previous H013 reference GDS vs current H015 GDS comparison. |
-| `results/research_evidence/h015_standard_gds_pair_summary.csv` | External standard GDS vs current H015 GDS comparison. |
-| `results/research_evidence/h015_ab_timing_n3_summary_by_case.csv` | Three-repetition H015 timing/quality A/B summary. |
-| `results/research_evidence/paper_assets/` | Generated paper tables, Markdown table copies, figure-data CSV files, SVG figures, and asset manifest. |
-| `results/research_evidence/h013_public_validation_summary.json` | Retained H013 top-level public validation metrics. |
-| `results/research_evidence/h013_public_validation_evidence_ledger.csv` | Retained H013 per-case GDS, DRC, timing, hash, and XOR evidence ledger. |
-| `results/research_evidence/h013_vs_h010_reference_gds_pair_summary.csv` | Previous H010 reference GDS vs H013 GDS comparison. |
-| `results/research_evidence/h013_standard_gds_pair_summary.csv` | External standard GDS vs H013 GDS comparison. |
-| `results/research_evidence/h013_min_ab_timing_summary_by_case.csv` | One-repetition H013 timing/quality A/B summary. |
-| `results/research_evidence/h013_ab_timing_n3_summary_by_case.csv` | Three-repetition H013 timing/quality A/B summary. |
-| `results/research_evidence/h010_public_validation_summary.json` | Top-level public validation metrics. |
-| `results/research_evidence/h010_public_validation_evidence_ledger.csv` | Per-case GDS, DRC, timing, hash, and XOR evidence ledger. |
-| `results/research_evidence/h010_reference_vs_public_run_gds_pair_summary.csv` | Shipped-reference GDS vs reproduced public-run GDS comparison. |
-| `results/research_evidence/h010_standard_vs_public_run_gds_pair_summary.csv` | External standard GDS vs reproduced public-run GDS comparison. |
 | `results/README.md` | Explains archived results and sanitized paths. |
 | `standard_gds/README.md` | Placeholder note for external standard GDS files, which are not included. |
 
@@ -119,16 +99,10 @@ These are input benchmarks, not standard routed GDS files.
 | `README.md` | Main usage and current status. |
 | `docs/CURRENT_RESULTS.md` | Current included GDS results and standard-GDS comparison. |
 | `docs/METHODOLOGY.md` | Methodology for building/converting a high-quality router. |
-| `docs/SCIENTIFIC_RESULT.md` | Paper-style research-result statement with claim-to-evidence mapping. |
-| `docs/LAE_LIDAR_AGENT_PROTOCOL.md` | Project-specific agent protocol for hypothesis-driven router improvement. |
-| `docs/GPT55_AGENT_SPEC.md` | GPT-5.5-class agent specification for reproducing the LAE-LiDAR optimization loop. |
-| `docs/ARTIFACT_EVALUATION_REPORT.md` | Reviewer-facing artifact evaluation report and limitation summary. |
-| `docs/PAPER_BLUEPRINT.md` | Paper-ready outline, tables, figures, threats to validity, and artifact checklist. |
 | `docs/ALGORITHM_CHANGES_AND_INNOVATIONS.md` | Algorithmic changes, engineering innovations, and what was not hardcoded. |
 | `docs/EXPERIENCE_AND_TROUBLESHOOTING.md` | Lessons learned and debugging playbook. |
 | `docs/ENVIRONMENT.md` | C++ and Python environment dependencies. |
 | `docs/TRANSFER_GUIDE.md` | How to move this package into another PIC-DB tree. |
-| `docs/RESEARCH_ARTIFACT.md` | Research-result summary with quality, speed, GDS evidence, and agentic method. |
 
 ## Helper tools
 
@@ -136,5 +110,3 @@ These are input benchmarks, not standard routed GDS files.
 |---|---|
 | `tools/merge_into_picdb.ps1` | Copies packaged code into a PIC-DB source tree. |
 | `tools/run_all_cases.ps1` | Runs the default 9-case regression in a PIC-DB tree. |
-| `tools/generate_paper_assets.py` | Regenerates paper-ready CSV/Markdown tables, figure-data CSV files, and SVG figures from the evidence matrix. |
-| `tools/validate_research_artifact.py` | Validates JSON, claim ledgers, GDS existence, GDS SHA256, H015 totals, standard-GDS comparison rows, and portable paths. |

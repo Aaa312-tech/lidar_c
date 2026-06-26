@@ -227,45 +227,6 @@ post path export
 把 MMI 剩余差异定位到 crossing geometry 周边，而不是误判为 A* 大范围错误
 ```
 
-### 3.7.1 Crossing Separation And First-Access Detours
-
-H011/H013/H015 在 post-process 层增加了三个质量修复：
-
-```text
-H011: supplemental crossing 插入时，要求新 crossing center 与既有 crossing center
-      至少相隔一个 crossing cell 的物理跨度，避免 crossing cell envelope overlap。
-
-H013: fanout access overlap 修复不再只处理中间水平段，也允许处理起始端口后的
-      第一段水平 access；修复时保留端口初始切向，再绕开被其它 access lane 占用的
-      共享通道。
-
-H015: 第一段 access 需要转弯绕开共享通道时，不再使用固定 clearance 后的最早
-      turnpoint，而是在 overlap 开始前选择 latest safe turnpoint。这样可减少
-      turnpoint 与相邻短 S-bend/access connector 的局部重叠，同时保持端口初始
-      切向和后续绕行语义。
-```
-
-这些修复不读取标准 GDS，也不按 case name、net name 或固定坐标触发。触发条件来自
-当前 route path 的几何关系：
-
-```text
-crossing center distance
-access segment horizontal overlap
-port orientation
-available tangent distance before overlap
-latest safe x-coordinate before overlap start
-post-route access orientation validation
-```
-
-验证结果：
-
-```text
-MRR 8x8 markers: 8 -> 6 -> 2
-MRR 16x16 markers: 110 -> 92 -> 86
-Clements and MultiportMMI reference GDS: unchanged
-standard-GDS comparison for the three provided standard files: unchanged
-```
-
 ### 3.8 Version-Locked GDS Rendering
 
 C++ 版本没有直接手写所有 gdsfactory photonic cells，而是继续通过 gdsfactory/kfactory 渲染最终 GDS。
@@ -396,54 +357,6 @@ route result 只在边界处序列化，不在每步搜索中跨 Python
 同一 route result 被复用到 summary、writeback、DRC、GDS render
 ```
 
-已验证的非语义 A* 优化栈：
-
-```text
-H005 A* allocation reserve:
-  根据局部 routing bound 预留 nodes、nodeIndex 和 neighbor vector 容量。
-
-H007 structured A* node keys:
-  用 GridNodeKey(x, y, orientation) 代替每次 lookup 构造字符串 key。
-
-H008 unordered HeapDict entry lookup:
-  HeapDict 的 membership table 改为 unordered_map，但保留 binary heap 的
-  costF 比较和 pop 顺序。
-
-H010 cached A* step costs:
-  在 LidarAstarInitState 中缓存 straight0、straight45、bend45、bend90
-  固定成本，并在 neighbor loop 复用 step-type predicate。
-```
-
-这些优化的共同约束：
-
-```text
-不改变 A* cost formula
-不改变 neighbor order
-不改变 crossing/DRC legality
-不改变 heap priority comparison
-不改变 post-process 和 GDS render
-不按 case name 或标准 GDS 坐标分支
-```
-
-验证结果：
-
-```text
-H005+H007+H008+H010 vs initial C++ seed:
-  9 / 9 benchmark GDS byte-identical
-  all layer-XOR area = 0.0
-
-H005+H007+H008 direct paired timing vs initial seed:
-  selected 3 cases x 3 repetitions
-  route-core delta = -9.057515% average
-  all repeated GDS exact
-
-H010 incremental paired timing vs H008:
-  selected 2 cases x 3 repetitions
-  route-core delta = -9.949529% average
-  all repeated GDS exact
-  confidence intervals are wide, so report as conservative hot-loop cleanup
-```
-
 当前端到端瓶颈仍包括：
 
 ```text
@@ -478,7 +391,7 @@ default 9-case regression can run end to end
 
 ```text
 MMI crossing geometry 仍有极小 XOR
-MRR 8x8 / 16x16 仍有 route geometry markers, currently 2 / 86 in the H015 reference run
+MRR 8x8 / 16x16 仍有 route geometry markers
 end-to-end runtime 仍受 Python render 影响
 ```
 

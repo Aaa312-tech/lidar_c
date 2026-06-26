@@ -223,8 +223,8 @@ clements 路径完全一致
 
 ```text
 mrr_weight_bank_4x4: clean
-mrr_weight_bank_8x8: 2 markers
-mrr_weight_bank_16x16: 86 markers
+mrr_weight_bank_8x8: 8 markers
+mrr_weight_bank_16x16: 110 markers
 ```
 
 主要问题：

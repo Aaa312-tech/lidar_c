@@ -15,17 +15,6 @@ grid/bitmap construction, port access, crossing-aware A* routing, rip-up and
 reroute, route post-processing, PIC-DB writeback, DB-level DRC, and
 gdsfactory/kfactory GDS rendering.
 
-The current source also includes the accepted non-semantic A* speed stack:
-allocation reservation, structured grid-node keys, unordered heap-entry lookup,
-and cached fixed step costs. These patches were accepted only after exact-GDS
-regression checks; they do not use standard GDS files as generation inputs.
-
-The latest archived results also include three geometry-quality fixes:
-crossing-cell separation for supplemental crossings, first-access fanout
-detours for shared MRR access lanes, and latest-safe first-access turnpoints
-before an overlap starts. These reduce MRR DRC markers without changing the
-Clements or MultiportMMI reference GDS outputs.
-
 Archived reference results are included under:
 
 ```text
@@ -45,17 +34,6 @@ The full default 9-case regression summary is:
 ```text
 results/reference_run/reference_run.csv
 results/reference_run/reference_run.json
-```
-
-Current full-regression headline:
-
-```text
-cases: 9
-completed: 9
-DRC-clean cases: 6
-total DRC markers: 89
-route-geometry markers: 88
-MRR marker delta vs H010 validation: -30
 ```
 
 Standard-GDS comparison reports are:
@@ -88,24 +66,16 @@ lidar_c/
     ENVIRONMENT.md
     EXPERIENCE_AND_TROUBLESHOOTING.md
     FILE_MANIFEST.md
-    LAE_LIDAR_AGENT_PROTOCOL.md
     METHODOLOGY.md
-    PERFORMANCE_AND_QUALITY_EVIDENCE.md
-    RESEARCH_ARTIFACT.md
-    SCIENTIFIC_RESULT.md
     TRANSFER_GUIDE.md
   results/
     reference_run/
     reference_gds_compare/
-    research_evidence/
-      paper_assets/
   standard_gds/
     README.md
   tools/
-    generate_paper_assets.py
     merge_into_picdb.ps1
     run_all_cases.ps1
-    validate_research_artifact.py
 ```
 
 ## Code Scope
@@ -200,19 +170,6 @@ python tools\pr_lidar_native\scripts\compare_gds_geometry.py `
   --out-dir build_native_release\checks\reference_gds_compare
 ```
 
-Validate the packaged research artifact and evidence chain:
-
-```powershell
-cd $LidarCRoot
-python tools\validate_research_artifact.py --root .
-```
-
-Regenerate paper tables, figure-data CSV files, and SVG figures:
-
-```powershell
-python tools\generate_paper_assets.py --root .
-```
-
 ## Environment Summary
 
 The GDS-render environment is version-sensitive. The archived reference results
@@ -257,30 +214,11 @@ Detailed documents:
 
 ```text
 docs/METHODOLOGY.md
-docs/SCIENTIFIC_RESULT.md
-docs/LAE_LIDAR_AGENT_PROTOCOL.md
-docs/GPT55_AGENT_SPEC.md
-docs/ARTIFACT_EVALUATION_REPORT.md
-docs/PAPER_BLUEPRINT.md
 docs/ALGORITHM_CHANGES_AND_INNOVATIONS.md
 docs/EXPERIENCE_AND_TROUBLESHOOTING.md
 docs/TRANSFER_GUIDE.md
 docs/FILE_MANIFEST.md
 docs/CURRENT_RESULTS.md
-docs/PERFORMANCE_AND_QUALITY_EVIDENCE.md
-docs/RESEARCH_ARTIFACT.md
-```
-
-Paper-ready generated tables, figure data, and SVG figures:
-
-```text
-results/research_evidence/paper_assets/
-```
-
-Artifact scorecard:
-
-```text
-results/research_evidence/artifact_scorecard.csv
 ```
 
 ## Current Risks
@@ -290,8 +228,7 @@ results/research_evidence/artifact_scorecard.csv
    almost identical to the standards, but retain tiny XOR around crossing
    post-processing geometry.
 3. In the archived full regression, `mrr_weight_bank_8x8` and
-   `mrr_weight_bank_16x16` still have DRC markers, reduced to 2 and 86
-   respectively in the H015 reference run. They need more MRR-specific
+   `mrr_weight_bank_16x16` still have DRC markers and need more MRR-specific
    crossing/short-connector cleanup.
 4. End-to-end runtime is still affected by Python YAML conversion and
    gdsfactory/KLayout GDS rendering, even though the C++ route core is much

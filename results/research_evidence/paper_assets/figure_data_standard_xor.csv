@@ -1,4 +1,0 @@
-case,standard_xor_um2,overlap_ratio,generated_gds
-clements_8x8,0.0,1.0,results/reference_run/clements_8x8_cpp.gds
-multiportmmi_8x8,5.091752,0.999978471,results/reference_run/multiportmmi_8x8_cpp.gds
-multiportmmi_16x16,18.680864,0.999969043,results/reference_run/multiportmmi_16x16_cpp.gds
